@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react"
-import PropTypes from "prop-types"
 import { Alert } from "./"
 import { FaQuestion, FaTrash } from "react-icons/fa"
 import ReactTooltip from "react-tooltip"

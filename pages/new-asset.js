@@ -3,15 +3,14 @@ import { useContext } from "react"
 import Link from "next/link"
 import Head from "next/head"
 
-import { helpers, StoreContext, constants } from "../utils"
+import { StoreContext, constants } from "../utils"
 import { IconForCategory } from "../components"
-const { capitalize } = helpers
 const { CATEGORIES } = constants
 
 const NewAsset = () => {
   const {
-    state: { currency, categories, assets, institutions },
-    dbAction,
+    state: { categories },
+    // dbAction,
   } = useContext(StoreContext)
 
   return (

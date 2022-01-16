@@ -1,12 +1,7 @@
-import { Fragment, useContext, useState, useEffect } from "react"
+import { useContext, useState, useEffect } from "react"
 import Loadable from "react-loadable"
 import Head from "next/head"
-import {
-  AmountInput,
-  Footer,
-  Loading,
-  Toggle,
-} from "../components"
+import { Footer, Loading } from "../components"
 
 const LoadableComponent = Loadable({
   loader: () => import("../components/charts/allAssetsChart"),
@@ -17,46 +12,31 @@ const LoadedDonut = Loadable({
   loading: Loading,
 })
 
-import {
-  StoreContext,
-  helpers,
-  moneyHelpers,
-  assetMethods,
-  constants,
-} from "../utils"
-import { useVisibility, useTotalAmounts } from "../utils/hooks"
+import { StoreContext, assetMethods, constants } from "../utils"
+import { useTotalAmounts } from "../utils/hooks"
 import { TableManager } from "../components/table"
 
-const { percentage, formattedMoney } = moneyHelpers
-const { assetsForCategory, donutStatsMaker } = assetMethods
+const { donutStatsMaker } = assetMethods
 const { CATEGORIES } = constants
 
 export default function Portfolio() {
-  const { totalDisplayed } = useVisibility()
   const { totalForAssets } = useTotalAmounts()
   const {
     state: { currency, categories, assets, institutions },
     dbAction,
   } = useContext(StoreContext)
 
-  const [sortBy, setSortBy] = useState(1)
   const [categoryAttributesLiability, setCategoryAttributesLiability] =
     useState([])
   const [categoryAttributesPositives, setCategoryAttributesPositives] =
     useState([])
-  const sortCategory = {
-    1: "name",
-    2: "split",
-    3: "amount",
-    4: "return",
-    5: "returnP",
-  }
   useEffect(() => {
     const theseAssets = assets.filter((a) => !a.item.liability)
     setCategoryAttributesPositives(
       donutStatsMaker(categories, theseAssets, institutions, totalForAssets),
     )
   }, [categories])
+
   useEffect(() => {
     const theseAssets = assets.filter((a) => a.item.liability)
     setCategoryAttributesLiability(

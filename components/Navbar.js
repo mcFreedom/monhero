@@ -5,7 +5,7 @@ import { useRouter } from "next/router"
 import { FaBars, FaCog, FaPlus, FaTimes, FaUser } from "react-icons/fa"
 
 import { useVisibility, useTotalAmounts, useRate } from "../utils/hooks"
-import { FaEye, FaEyeSlash, FaInfo, FaSpinner } from "react-icons/fa"
+import { FaSpinner } from "react-icons/fa"
 import { StoreContext } from "../utils"
 
 import { CurrencyPicker } from "../components"
@@ -136,10 +136,10 @@ const MenuOptions = ({ error, timeAgo, showModal, fetchData }) => {
 }
 
 const Navigation = ({ path }) => {
-  const { totalDisplayed, toggleTotal } = useVisibility()
+  const { totalDisplayed } = useVisibility()
   const { totalForAssets } = useTotalAmounts()
   const {
-    state: { currency, assets, categories, institutions },
+    state: { currency, assets },
   } = useContext(StoreContext)
   const { loading } = useRate()
 

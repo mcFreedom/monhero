@@ -1,8 +1,7 @@
 import React, { useState } from "react"
-import PropTypes from "prop-types"
 import { FaTimes } from "react-icons/fa"
 
-export const HelpButton = ({}) => {
+export const HelpButton = () => {
   const [open, setOpen] = useState(false)
   return open ? (
     <div className="hidden md:flex md:items-end md:flex-col border p-5 absolute bottom-5 right-5 rounded bg-white">

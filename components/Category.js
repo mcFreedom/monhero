@@ -1,8 +1,6 @@
 import { useContext, useEffect, useState, Fragment } from "react"
-import PropTypes from "prop-types"
 import { StoreContext, constants, helpers, assetMethods } from "../utils"
 import { Row, EmptyRow, Header } from "./table"
-import { Toggle } from "."
 import ReactTooltip from "react-tooltip"
 
 import { FaArrowRight, FaCog, FaPlus, FaSpinner } from "react-icons/fa"
@@ -13,24 +11,24 @@ import { useTotalAmounts, useRate } from "../utils/hooks"
 const { institutionStyle } = helpers
 const { assetsForCategory, assetsForInstitution } = assetMethods
 
-export const Category = ({ id, category }) => {
+export const Category = ({ category }) => {
   const { totalForAssets } = useTotalAmounts()
   const [currentInstitutions, setCurrentInstitutions] = useState([])
 
   const {
     state: { assets, institutions },
-    dbAction,
+    // dbAction,
   } = useContext(StoreContext)
-  const { loading, error } = useRate()
+  const { loading } = useRate()
   useEffect(() => {
     if (institutions) setCurrentInstitutions(currentIntitutionsMaker(category))
   }, [institutions, assets])
 
-  const toggleActiveCategory = () => {
-    let newCat = { ...category }
-    newCat.percentage = !category.percentage
-    dbAction("update", "categories", newCat, id)
-  }
+  // const toggleActiveCategory = () => {
+  //   let newCat = { ...category }
+  //   newCat.percentage = !category.percentage
+  //   dbAction("update", "categories", newCat, id)
+  // }
 
   // TODO: cleanup ?
   const totalForInstitution = (institution) => {

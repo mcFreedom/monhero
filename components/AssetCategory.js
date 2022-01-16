@@ -14,13 +14,13 @@ import { Loading } from "./Loading"
 import Loadable from "react-loadable"
 import { TableManager } from "./table"
 import Head from "next/head"
-import { FaArrowLeft, FaPlus } from "react-icons/fa"
+import { FaPlus } from "react-icons/fa"
 import Link from "next/link"
 import ReactTooltip from "react-tooltip"
 
 const { assetsForCategory, tableStatsMaker, portfolioDonutStatsMaker } =
   assetMethods
-const { institutionLanguage, newInstitutionLanguage } = helpers
+const { newInstitutionLanguage } = helpers
 
 const { CATEGORIES } = constants
 
@@ -40,7 +40,7 @@ export const AssetCategory = ({ category, assets }) => {
 
   const {
     state: { categories, institutions, currency },
-    loading,
+    // loading,
   } = useContext(StoreContext)
 
   const { totalForAssets } = useTotalAmounts()

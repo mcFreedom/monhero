@@ -1,11 +1,10 @@
 import React from "react"
-import PropTypes from "prop-types"
 import { moneyHelpers } from "../../utils"
 import styles from "../../styles/Category.module.css"
 import { FaExchangeAlt, FaCog, FaLock } from "react-icons/fa"
 import Link from "next/link"
 
-export const BanksHeader = (props) => {
+export const BanksHeader = () => {
   return (
     <tr>
       <td className={styles.leftColumn}></td>
@@ -23,7 +22,7 @@ export const BanksRow = ({
   asset,
   total = false,
   categoryTotal = false,
-  title = null,
+  // title = null,
   leftColumnStyle = {},
   children,
 }) => {
@@ -37,8 +36,6 @@ export const BanksRow = ({
     tdRightAlign,
     tdPaddingRight,
     leftColumn,
-    green,
-    red,
   } = styles
 
   let style = tr

@@ -1,6 +1,5 @@
 import { useState, useContext } from "react"
 import { StoreContext } from "../utils"
-import PropTypes from "prop-types"
 
 export const HomeMessage = () => {
   const {

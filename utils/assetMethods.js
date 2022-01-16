@@ -4,7 +4,7 @@ const { sortByDate, removeFromArray } = helpers
 const { percentage } = moneyHelpers
 import axios from "axios"
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL
-const NUMBER_OF_DAYS = 30
+// const NUMBER_OF_DAYS = 30
 
 const getAssetCurrencies = (assets = []) => {
   let set = new Set()
@@ -45,18 +45,18 @@ const sortedDatapoints = (asset) => {
   return sortByDate([...asset.dataPoints])
 }
 
-const daysMaker = (numberOfDays = 10) => {
-  var day = new Date()
-  day.setDate(day.getDate() - numberOfDays)
-  day.setHours(0, 0, 0, 0)
-  const startOfDays = [...Array(numberOfDays)].map((_, i) => {
-    day.setDate(day.getDate() + 1)
-    return day.valueOf()
-  })
-  const now = new Date()
-  startOfDays.push(now.valueOf())
-  return startOfDays
-}
+// const daysMaker = (numberOfDays = 10) => {
+//   var day = new Date()
+//   day.setDate(day.getDate() - numberOfDays)
+//   day.setHours(0, 0, 0, 0)
+//   const startOfDays = [...Array(numberOfDays)].map((_, i) => {
+//     day.setDate(day.getDate() + 1)
+//     return day.valueOf()
+//   })
+//   const now = new Date()
+//   startOfDays.push(now.valueOf())
+//   return startOfDays
+// }
 const holdingsCurve = (dates, asset) => {
   const datapoints = sortedDatapoints(asset)
   return dates.map((date) => {
@@ -187,7 +187,7 @@ const donutStatsMaker = (categories, assets, institutions, totalForAssets) => {
   return setUp.filter(Boolean).flat()
 }
 
-const portfolioDonutStatsMaker = (assets, rateFor, length, _institutions) => {
+const portfolioDonutStatsMaker = (assets, rateFor, length) => {
   let currencies = {}
   // let locations = {}
   assets.map((asset) => {

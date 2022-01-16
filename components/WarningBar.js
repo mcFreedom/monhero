@@ -1,12 +1,11 @@
-import { forwardRef, useContext, useState, useEffect } from "react"
-import Link from "next/link"
+import { forwardRef } from "react"
 import PropTypes from "prop-types"
-import { useRouter } from "next/router"
+// import { useRouter } from "next/router"
 
 export const WarningBar = forwardRef(({ setShowModal }, ref) => {
-  const router = useRouter()
-  const path = router.pathname
-  const home = path === "/"
+  // const router = useRouter()
+  // const path = router.pathname
+  // const home = path === "/"
 
   return (
     <div

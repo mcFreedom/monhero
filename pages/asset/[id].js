@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect, useCallback } from "react"
+import { useContext, useState, useEffect } from "react"
 import {
   StoreContext,
   helpers,
@@ -25,7 +25,6 @@ import {
   FaEye,
   FaEyeSlash,
   FaPiggyBank,
-  FaHome,
   FaUniversity,
   FaCog,
   FaLock,
@@ -52,8 +51,6 @@ export const Asset = () => {
   const {
     rateFor,
     // percentageChangeFor,
-    loading: rateLoading,
-    error: rateError,
   } = useRate()
 
   let { id: pageId } = router.query

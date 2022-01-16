@@ -7,13 +7,11 @@ import {
   helpers,
   moneyHelpers,
 } from "../../utils"
-import { Loading, Category, ReturnBadge } from "../../components"
+import { Loading, ReturnBadge } from "../../components"
 import Head from "next/head"
-import { useRouter } from "next/router"
 import { FaArrowLeft, FaLink, FaPlus } from "react-icons/fa"
 import Link from "next/link"
-const { assetsForCategory, assetsForInstitution, returnPercentage } =
-  assetMethods
+const { assetsForCategory, assetsForInstitution } = assetMethods
 const { institutionLanguage, institutionStyle } = helpers
 const { formattedMoney } = moneyHelpers
 

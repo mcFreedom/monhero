@@ -1,5 +1,4 @@
 import React from "react"
-import PropTypes from "prop-types"
 import { FaTimes } from "react-icons/fa"
 
 export const Alert = ({ buttonText, message, buttonTrigger, close }) => {

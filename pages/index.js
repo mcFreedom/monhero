@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from "react"
-import { StoreContext, helpers, assetMethods, constants } from "../utils"
+import { StoreContext, assetMethods, constants } from "../utils"
 import { Loading } from "../components"
 import { WelcomeModal } from "../components/portal"
 import Head from "next/head"

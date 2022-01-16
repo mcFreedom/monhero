@@ -18,7 +18,6 @@ import {
   FaLock,
   FaSpinner,
   FaUniversity,
-  FaHome,
 } from "react-icons/fa"
 const { CATEGORIES } = constants
 import ReactTooltip from "react-tooltip"

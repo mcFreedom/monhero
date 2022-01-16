@@ -43,7 +43,7 @@ export const HistoricalHoldings = ({ asset, setNewAssets }) => {
         if (!dataPoint.deltaAmount) return [null, null]
         const purchasePrice =
           rateFor(dataPoint.deltaCurrency) * dataPoint.deltaAmount
-        const [totalReturn, ROI] = returnPercentage(currentPrice, purchasePrice)
+        const [, ROI] = returnPercentage(currentPrice, purchasePrice)
         return (
           <div
             className={`${

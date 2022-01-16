@@ -1,9 +1,11 @@
 import dynamic from "next/dynamic"
 import PropTypes from "prop-types"
 
+const L = () => <div className="flex-center">Loading</div>
+
 const DynamicPlot = dynamic(import("./StaticPlot"), {
   ssr: false,
-  loading: () => <div className="flex-center">Loading</div>,
+  loading: L,
 })
 
 export const Chart = ({ data, layout }) => {

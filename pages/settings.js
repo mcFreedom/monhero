@@ -3,7 +3,7 @@ import { Toggle } from "../components"
 import { StoreContext, constants } from "../utils"
 import Link from "next/link"
 import Image from "next/image"
-const { CATEGORIES, BLOCKED_CATEGORIES } = constants
+const { CATEGORIES } = constants
 import { FaHome } from "react-icons/fa"
 import Head from "next/head"
 

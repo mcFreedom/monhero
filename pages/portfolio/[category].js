@@ -9,7 +9,7 @@ import {
 } from "../../utils"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
 import { useVisibility } from "../../utils/hooks"
-import { Loading, Category, SimpleView } from "../../components"
+import { Loading, SimpleView } from "../../components"
 import Loadable from "react-loadable"
 import { TableManager } from "../../components/table"
 import Head from "next/head"

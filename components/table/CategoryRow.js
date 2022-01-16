@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import Link from "next/link"
-import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table"
+import { Tr, Td } from "react-super-responsive-table"
 import { Toggle } from ".."
 import {
   moneyHelpers,

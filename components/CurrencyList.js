@@ -1,13 +1,9 @@
 import { useState, useEffect } from "react"
-import { constants, helpers } from "../utils"
+import { constants } from "../utils"
 import axios from "axios"
-import { Alert } from "../components"
 import Select from "react-select"
-import { FaQuestion, FaTrash } from "react-icons/fa"
-import ReactTooltip from "react-tooltip"
 
 const { CURRENCIES } = constants
-const { assetPlaceholders } = helpers
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL
 
 const initialOptions = Object.keys(CURRENCIES).map((currency) => {
@@ -39,7 +35,7 @@ export const CurrencyList = ({
   initialCurrency = "USD",
 }) => {
   const [options, setOptions] = useState(initialOptions)
-  const [inputValue, setInputValue] = useState("")
+  const [, setInputValue] = useState("")
 
   useEffect(() => {
     setInputValue(inputValueProp)
@@ -77,7 +73,7 @@ export const AssetList = ({
   handleTransfer = () => {},
   options = [],
   placeholder = "",
-  defaultDataPoint = null,
+  // defaultDataPoint = null,
 }) => {
   return (
     <Select

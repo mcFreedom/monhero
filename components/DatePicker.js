@@ -4,7 +4,6 @@ import "react-dates/initialize"
 import "react-dates/lib/css/_datepicker.css"
 import moment from "moment"
 import { SingleDatePicker } from "react-dates"
-import PropTypes from "prop-types"
 
 const renderMonthElement = ({ month, onMonthSelect, onYearSelect }) => {
   // if (soon) return <strong>{month.format("MMMM YYYY")}</strong>

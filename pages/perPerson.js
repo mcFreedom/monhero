@@ -1,4 +1,4 @@
-const PerPerson = (props) => {
+const PerPerson = () => {
   const maxSupply = 18000000
   const population = 8000000000
   return (

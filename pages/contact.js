@@ -1,4 +1,4 @@
-import Link from "next/link"
+// import Link from "next/link"
 
 const Contact = () => {
   return (
@@ -6,6 +6,14 @@ const Contact = () => {
       <h1>Contact</h1>
       <a href="mailto:hello@monhero.estate" className="a">
         Email us
+      </a>
+      <a
+        href="https://twitter.com/TheMcFreedom"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="a"
+      >
+        Twitter message
       </a>
     </div>
   )

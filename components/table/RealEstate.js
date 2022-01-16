@@ -1,11 +1,10 @@
 import React from "react"
-import PropTypes from "prop-types"
 import { moneyHelpers } from "../../utils"
 import styles from "../../styles/Category.module.css"
-import { FaExchangeAlt, FaCog, FaLock } from "react-icons/fa"
+import { FaExchangeAlt, FaLock } from "react-icons/fa"
 import Link from "next/link"
 
-export const RealEstateHeader = (props) => {
+export const RealEstateHeader = () => {
   return (
     <tr>
       <td className={styles.leftColumn}></td>
@@ -25,7 +24,6 @@ export const RealEstateRow = ({
   asset,
   total = false,
   categoryTotal = false,
-  title = null,
   leftColumnStyle = {},
   children = {},
 }) => {

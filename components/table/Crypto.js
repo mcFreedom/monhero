@@ -11,9 +11,7 @@ import {
 import { FaLink } from "react-icons/fa"
 import { SortingIcon } from "."
 import { Sparklines, SparklinesLine } from "react-sparklines"
-import { Loader } from "../Loading"
 import Image from "next/image"
-import ReactTooltip from "react-tooltip"
 
 // const { CATEGORIES } = constants
 const { formattedMoney, percentage } = moneyHelpers

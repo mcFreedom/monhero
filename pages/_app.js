@@ -18,7 +18,7 @@ const { getAssetCurrencies } = assetMethods
 import { useRouter } from "next/router"
 import LogIn from "./log-in"
 
-function MyApp({ Component, pageProps, href }) {
+function MyApp({ Component, pageProps }) {
   const router = useRouter()
   useEffect(() => {
     retrieveLocalStorage("tutorialAccepted").then((value) => {

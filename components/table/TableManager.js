@@ -2,13 +2,8 @@ import { Fragment, useState, useEffect } from "react"
 
 import { Table, Thead, Tbody } from "react-super-responsive-table"
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css"
-import { Toggle } from ".."
 
-import { moneyHelpers, constants, useVisibility } from "../../utils"
-import { FaLink } from "react-icons/fa"
 import { PortfolioHeader, PortfolioRow, CryptoRow, CryptoHeader } from "./"
-const { CATEGORIES } = constants
-const { formattedMoney } = moneyHelpers
 
 const sortCategory = (type) => {
   if (type === "portfolio")
@@ -45,7 +40,6 @@ export const TableManager = ({
   category = "portfolio",
 }) => {
   const [sortBy, setSortBy] = useState(1)
-  const { totalDisplayed } = useVisibility()
 
   useEffect(() => {
     sortCategories()

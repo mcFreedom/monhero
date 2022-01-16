@@ -1,15 +1,11 @@
 import { useState, useEffect } from "react"
-import { constants, helpers } from "../utils"
-import axios from "axios"
+import { helpers } from "../utils"
 import { Alert, CurrencyList } from "../components"
-import Select from "react-select"
 import { FaEyeSlash, FaKey, FaLock, FaQuestion, FaTrash } from "react-icons/fa"
 import { GiSpy } from "react-icons/gi"
 import ReactTooltip from "react-tooltip"
 
-const { CURRENCIES } = constants
 const { assetPlaceholders } = helpers
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL
 
 export const AssetForm = ({
   assetProp = {},

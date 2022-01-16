@@ -1,6 +1,5 @@
 import React, { useContext } from "react"
 import { Sparklines, SparklinesLine } from "react-sparklines"
-import PropTypes from "prop-types"
 import { StoreContext, moneyHelpers } from "../../utils"
 import styles from "../../styles/Category.module.css"
 import { FaExchangeAlt, FaLock, FaSpinner } from "react-icons/fa"
@@ -80,10 +79,9 @@ export const Row = ({
     state: { currency },
   } = useContext(StoreContext)
 
-  const { rateFor, percentageChangeFor, loading, error } = useRate()
+  const { rateFor, percentageChangeFor, loading } = useRate()
   const { totalDisplayed } = useVisibility()
   // const rate = 1
-  let style = tr
   // if (total) style = totalRow
   // if (categoryTotal) style = categoryTotalRow
   return (
