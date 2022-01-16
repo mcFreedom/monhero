@@ -1,0 +1,49 @@
+.thead {
+  @apply h-20 border-t border-b font-bold ml-5;
+}
+.leftColumn{
+  @apply w-16 text-sm px-5 text-blue-500 py-2 font-bold;
+}
+.tr {
+  @apply h-10
+}
+.totalRow {
+  @apply tr bg-yellow-200 font-bold border-none
+}
+.categoryTotalRow {
+  @apply tr  bg-yellow-600 font-bold
+}
+.tdLeft {
+  @apply pl-5 py-4 border-b
+}
+.tdRightAlign {
+  @apply text-right border-b
+}
+.lastColumn {
+  @apply tdRightAlign pr-3
+}
+.lastColumnHeader {
+  @apply tdRightAlign pr-3
+}
+/* .col{
+  @apply flex flex-col tdRightAlign
+} */
+.neutral {
+  @apply tdRightAlign
+}
+.green {
+  color: green;
+  @apply tdRightAlign
+}
+.green:before{
+  content: '▲';
+  font-size: 0.6em;
+}
+.red {
+  color: red;
+  @apply tdRightAlign
+}
+.red:before{
+  font-size: 0.6em;
+  content: '▼';
+}

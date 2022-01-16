@@ -1,0 +1,231 @@
+import { forwardRef, useContext, useState, useEffect } from "react"
+import Link from "next/link"
+import PropTypes from "prop-types"
+import { useRouter } from "next/router"
+import { FaBars, FaCog, FaPlus, FaTimes, FaUser } from "react-icons/fa"
+
+import { useVisibility, useTotalAmounts, useRate } from "../utils/hooks"
+import { FaEye, FaEyeSlash, FaInfo, FaSpinner } from "react-icons/fa"
+import { StoreContext } from "../utils"
+
+import { CurrencyPicker } from "../components"
+import { RateContext } from "../utils"
+import moment from "moment"
+
+export const Navbar = forwardRef(({ showModal, styleOnly }, ref) => {
+  const { rates, error, fetchData } = useContext(RateContext)
+  const [timeAgo, setTimeAgo] = useState("A while back")
+  const [mobileMenu, setMobileMenu] = useState(false)
+  const router = useRouter()
+  const path = router.pathname
+
+  useEffect(() => {
+    let interval = null
+    interval = setInterval(() => {
+      if (rates && rates["lastUpdated"]) {
+        setTimeAgo(moment(rates["lastUpdated"]).fromNow())
+      } else {
+        setTimeAgo("A while back")
+      }
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [rates])
+
+  if (styleOnly) {
+    return (
+      <div className="w-screen border-b flex items-center justify-between fixed top-0 bg-white md:text-lg z-10">
+        <div className="flex items-center">
+          <Link href={"/assets"}>
+            <div
+              className={
+                "text-2xl px-2 font-extrabold cursor-pointer relative flex items-center"
+              }
+            >
+              MonHero
+              <div className="bg-red-500 text-white text-xs p-1 rounded rotate-12 mt-1 ml-1">
+                beta
+              </div>
+            </div>
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div
+      ref={ref}
+      className="bw-screen border-b flex items-center justify-between fixed top-0 bg-white  md:text-lg z-10 w-screen"
+    >
+      <div className="flex items-center">
+        <Link href={"/assets"}>
+          <div
+            className={
+              "text-2xl px-2 font-extrabold cursor-pointer relative flex items-center"
+            }
+          >
+            MonHero
+            <div className="bg-red-500 text-white text-xs p-1 rounded rotate-12 mt-1 ml-1">
+              beta
+            </div>
+          </div>
+        </Link>
+        <div className="hidden md:block">
+          <Navigation />
+        </div>
+      </div>
+      <div className="md:hidden pr-5">
+        {mobileMenu ? (
+          <FaTimes onClick={() => setMobileMenu(false)} />
+        ) : (
+          <FaBars onClick={() => setMobileMenu(true)} />
+        )}
+        {mobileMenu ? (
+          <div className="flex justify-center items-end flex-col absolute mt-3     bg-white right-0 w-screen px-5  border-b">
+            <Navigation path={path} />
+            <MenuOptions
+              error={error}
+              showModal={showModal}
+              timeAgo={timeAgo}
+              fetchData={fetchData}
+            />{" "}
+          </div>
+        ) : (
+          <></>
+        )}
+      </div>
+      <div className="right-end px-2 hidden md:flex md:justify-end md:items-center">
+        <MenuOptions
+          error={error}
+          showModal={showModal}
+          timeAgo={timeAgo}
+          fetchData={fetchData}
+        />
+      </div>
+    </div>
+  )
+})
+
+const MenuOptions = ({ error, timeAgo, showModal, fetchData }) => {
+  return (
+    <>
+      {error ? (
+        <span className="text-xs text-gray-500 pr-2 hidden md:block h-10 text-right md:min-w-1/2">{`Last ${error}`}</span>
+      ) : null}
+      <span
+        className="text-xs text-gray-500 h-10 flex items-center cursor-pointer"
+        onClick={() => fetchData()}
+      >
+        {`Last rate update: ${timeAgo}`}
+      </span>
+      <div className="h-10 md:px-2 flex items-center">
+        <CurrencyPicker />
+      </div>
+      <div className="flex items-center md:px-2">
+        <FaUser className="cursor-pointer h-10" onClick={showModal} />
+        <span className="md:hidden pl-1">Profile</span>
+      </div>
+      <Link href={"/settings"}>
+        <div className="flex justify-end items-center">
+          <FaCog className="cursor-pointer h-10 text-lg" />
+          <span className="md:hidden pl-1">Settings</span>
+        </div>
+      </Link>
+    </>
+  )
+}
+
+const Navigation = ({ path }) => {
+  const { totalDisplayed, toggleTotal } = useVisibility()
+  const { totalForAssets } = useTotalAmounts()
+  const {
+    state: { currency, assets, categories, institutions },
+  } = useContext(StoreContext)
+  const { loading } = useRate()
+
+  return (
+    <div className="flex  flex-col md:flex-row md:items-center text-right md:row divide-x-1/2">
+      <Link href={"/assets"}>
+        <div
+          className={`${
+            path === "portfolio" ? "font-extrabold" : ""
+          } md:px-2 cursor-pointer h-10 md:h-initial md:pr-5 hover:bg-gray-300`}
+        >
+          Assets
+          <div className="text-gray-600">
+            {loading ? (
+              <FaSpinner className="fa-spin" />
+            ) : totalDisplayed ? (
+              `${totalForAssets(
+                assets.filter((a) => !a.item.liability).map((a) => a.item),
+                false,
+                false,
+                false,
+              )}`
+            ) : (
+              `****${currency}`
+            )}
+          </div>
+        </div>
+      </Link>
+      <Link href={"/liabilities"}>
+        <div
+          className={`${
+            path === "portfolio" ? "font-extrabold" : ""
+          } md:px-2 cursor-pointer h-10 md:h-initial md:pr-5 hover:bg-gray-300`}
+        >
+          Liabilities
+          <div className="text-gray-600">
+            {loading ? (
+              <FaSpinner className="fa-spin" />
+            ) : totalDisplayed ? (
+              `${totalForAssets(
+                assets.filter((a) => a.item.liability).map((a) => a.item),
+                false,
+                false,
+                false,
+              )}`
+            ) : (
+              `****${currency}`
+            )}
+          </div>
+        </div>
+      </Link>
+      <Link href={"/portfolio"}>
+        <div
+          className={`${
+            path === "portfolio" ? "font-extrabold" : ""
+          } md:px-2 cursor-pointer h-10 md:h-initial hover:bg-gray-300`}
+        >
+          Net Worth
+          <div className="text-gray-600">
+            {loading ? (
+              <FaSpinner className="fa-spin" />
+            ) : totalDisplayed ? (
+              `${totalForAssets(
+                assets.map((a) => a.item),
+                false,
+                false,
+                true,
+              )}`
+            ) : (
+              `****${currency}`
+            )}
+          </div>
+        </div>
+      </Link>
+      <Link href="/new-asset">
+        <button className="btn small nav-bar my-2 md:my-1 h-10 md:h-initial flex-center">
+          <FaPlus className="pr-1" />
+          Add
+        </button>
+      </Link>
+    </div>
+  )
+}
+
+Navbar.propTypes = {
+  showModal: PropTypes.func,
+}
+
+Navbar.displayName = "Navbar"

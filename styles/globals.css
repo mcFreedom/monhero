@@ -1,0 +1,289 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+  @apply border-collapse;
+}
+
+label.required:before{
+  content: "*";
+  @apply text-red-500 pr-1;
+}
+
+/* links  */
+.a {
+  color: #0070f3;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+}
+.a:hover {
+  text-decoration: underline;
+}
+.a.white{
+  color: white;
+}
+
+/* Card  */
+.card, card{
+  @apply border p-3 rounded relative flex justify-center items-center;
+}
+.card, card {
+  margin: 1rem;
+  margin-top: 0;
+  flex-basis: 45%;
+  padding: 1.5rem;
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.card.link, card.link {
+  @apply cursor-pointer;
+}
+
+.card.link:hover, card.link:hover {
+  @apply scale-105;
+}
+
+.optional {
+  @apply mt-5 border-dotted border-red-300 border-4 p-4 relative rounded;
+}
+.optional:before{
+  @apply text-red-300 bg-white -top-5 absolute p-1;
+  content: "optional"
+}
+/* .card:hover,
+.card:focus,
+.card:active {
+  color: #0070f3;
+  border-color: #0070f3;
+} */
+
+.card h3, card h3 {
+  @apply text-2xl;
+}
+
+.card p, card p {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+container {
+  min-height: 100vh;
+  /* padding: 0 0.5rem; */
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.notice, notice {
+  @apply text-sm text-red-400 -rotate-12 transform absolute p-1 left-1/2 font-bold w-32;
+}
+info {
+  @apply bg-blue-500 p-10 text-white rounded;
+}
+
+
+body  h1 {
+  @apply text-4xl font-semibold p-5;
+}
+body h2 {
+  @apply text-xl font-semibold p-5;
+}
+body h3 {
+  @apply text-xl font-semibold text-center;
+}
+.input {
+  @apply border p-2 mb-1;
+}
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+/* buttons  */
+.btn{
+  @apply bg-blue-500 p-2 mt-2 mx-auto text-center text-white rounded;
+}
+.btn:hover{
+  @apply bg-blue-600;
+}
+.btn.active{
+  @apply bg-blue-600;
+}
+.btn.success{
+  @apply bg-green-400;
+}
+.btn.danger{
+  @apply bg-red-500;
+}
+.btn.grey{
+  @apply bg-gray-600;
+}
+.btn.ghost{
+  @apply bg-transparent text-gray-500;
+}
+.btn.small{
+  @apply p-1 m-1;
+}
+.btn.large{
+  @apply p-3 m-3 text-2xl;
+}
+.btn.small.nav-bar{
+  @apply mx-0 my-1;
+}
+.btn.disabled {
+  @apply cursor-not-allowed bg-gray-500;
+}
+
+
+
+
+/* transition */
+.ton {
+  @apply transform transition-all ease-in-out duration-300;
+}
+.ton-height{
+  transition: height 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  @apply transform;
+}
+
+/* animations  */
+.fa-spin {
+  animation: fa-spin 2s infinite linear;
+}
+@keyframes fa-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+/* effects  */
+.glassy {
+  background: rgba( 255, 255, 255, 0.25 );
+  backdrop-filter: blur( 3px );
+  -webkit-backdrop-filter: blur( 3px );
+}
+.modal-style {
+  /* https://glassmorphism.com/ */
+  background: rgba( 255, 255, 255, 0.8 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 4px );
+  -webkit-backdrop-filter: blur( 4px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+
+/* airbnb datepicker  */
+/* .DateRangePicker,
+.SingleDatePicker{
+  width: 100%
+}
+.DateRangePickerInput,
+.SingleDatePickerInput,
+.SingleDatePickerInput .DateInput{
+  width: 100%;
+  display: flex
+} */
+
+/* plotly  */
+/* .js-plotly-plot .plotly .modebar-group{
+  display: flex;
+  justify-content: flex-end
+}
+.js-plotly-plot .plotly .modebar-group {
+  display: flex !important
+} */
+/* purgecss end ignore */
+
+
+.responsiveTable th,  .responsiveTable td{
+  /* border: 1px solid #000; */
+  padding: 0.6rem;
+  text-align: left;
+  @apply text-xl;
+}
+
+.responsiveTable td {
+  font-size: 80%;
+  @apply text-xl;
+}
+.responsiveTable th, .responsiveTable th > .pivoted:first-child{
+  /* background: #888; */
+  /* color: #FFF; */
+  @apply text-left;
+}
+
+.responsiveTable td:first-child{
+  font-weight: bold;
+}
+
+.responsiveTable tr:nth-of-type(even) {
+  @apply bg-gray-200;
+}
+
+.responsiveTable tr td {
+  border-left: none;
+  border-right: none;
+  @apply border-gray-500;
+}
+
+.responsiveTable tr td.green {
+  color: green;
+}
+.responsiveTable tr td.green:before{
+  content: '▲';
+  font-size: 0.6em;
+}
+.responsiveTable tr td.red {
+  color: red;
+}
+.responsiveTable tr td.red:before{
+  font-size: 0.6em;
+  content: '▼';
+}
+
+
+/* chart  */
+.apexcharts-tooltip{
+  padding: 20px;
+  background: rgba(82, 82, 82, 0.2);
+  backdrop-filter: blur(16px);
+  border-radius: 8px;
+  color: rgb(0, 0, 0);
+}
+.apexcharts-tooltip .header {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+}
+.apexcharts-tooltip .value {
+  margin-left: 20px;
+  text-align: left;
+  color: rgb(163, 163, 163);
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+.apexcharts-legend {
+  @apply flex-col flex-center;
+}
