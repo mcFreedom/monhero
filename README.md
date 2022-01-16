@@ -2,7 +2,7 @@
 
 Open source, Private potfolio management.
 
-[https://www.monhero.estate]
+[Landing Page](https://www.monhero.estate)
 
 ## Development
 
