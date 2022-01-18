@@ -28,7 +28,7 @@ const LoadedDonut = Loadable({
   loader: () => import("./charts/percentages"),
   loading: Loading,
 })
-export const AssetCategory = ({ category, assets }) => {
+export const AssetCategory = ({ category = "crypto", assets }) => {
   const { totalDisplayed, toggleTotal } = useVisibility()
   const [thisCategory, setThisCategory] = useState(null)
   const [total, setTotal] = useState("")

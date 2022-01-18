@@ -215,7 +215,7 @@ const Navigation = ({ path }) => {
         </div>
       </Link>
       <Link href="/new-asset">
-        <button className="btn small nav-bar my-2 md:my-1 h-10 md:h-initial flex-center">
+        <button className="btn small nav-bar my-2 md:my-1 h-10 md:h-initial flex-center ml-2">
           <FaPlus className="pr-1" />
           Add
         </button>

@@ -48,7 +48,7 @@ export const AssetPage = ({ categoryProp, liabilities = false }) => {
 
   return (
     <>
-      <div className="flex snap-x mt-20  bg-gray-400 text-white justify-center">
+      <div className="flex snap-x mt-8 md:mt-12 bg-gray-400 text-white justify-center">
         {assetsFormatted.map((item, i) => {
           if (item.hidden) return <Fragment key={i}></Fragment>
           return (

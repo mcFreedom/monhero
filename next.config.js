@@ -14,5 +14,13 @@ module.exports = {
   images: {
     domains: ["assets.coingecko.com"],
   },
-  basePath: "/assets",
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/assets",
+        permanent: true,
+      },
+    ]
+  },
 }

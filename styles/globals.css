@@ -231,7 +231,7 @@ body h3 {
 .responsiveTable th, .responsiveTable th > .pivoted:first-child{
   /* background: #888; */
   /* color: #FFF; */
-  @apply text-left;
+  /* @apply text-left; */
 }
 
 .responsiveTable td:first-child{
@@ -287,3 +287,18 @@ body h3 {
 .apexcharts-legend {
   @apply flex-col flex-center;
 }
+
+
+  .responsiveTable td .tdBefore {
+    /* Now like a table header */
+    position: absolute;
+    display: block;
+
+    /* Top/left values mimic padding */
+    left: 1rem;
+    width: calc(50% - 20px);
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    text-align: left !important;
+    font-weight: 600;
+  }

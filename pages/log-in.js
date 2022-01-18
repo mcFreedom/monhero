@@ -179,7 +179,7 @@ export default function LogIn({ signUpProp = false }) {
                       value={loginForm?.password}
                       onChange={handleLoginInputChange}
                       placeholder="V3ryL0ng&s3cr3T!!!!"
-                      clearable
+                      clearable="true"
                     />
 
                     <FaTimes

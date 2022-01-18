@@ -72,7 +72,7 @@ const About = () => {
         </div>
         <div>
           Run a company and want to buy bulk licenses?
-          <Link href="/contact">
+          <Link href="/contact" passHref>
             <a className="pl-1 hover:underline text-blue-500">Contact us</a>
           </Link>
         </div>

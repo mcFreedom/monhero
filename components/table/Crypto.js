@@ -23,7 +23,7 @@ export const CryptoHeader = ({ setSortBy, sortBy }) => {
       <Th className="text-sm">
         <div
           onClick={() => setSortBy(sortBy === 1 ? -1 : 1)}
-          className="w-full flex-center cursor-pointer hover:underline"
+          className="w-full md:flex-center cursor-pointer hover:underline"
         >
           <SortingIcon sortBy={sortBy} thisId={1} type="alpha" />
           Institution
@@ -32,7 +32,7 @@ export const CryptoHeader = ({ setSortBy, sortBy }) => {
       <Th>
         <div
           onClick={() => setSortBy(sortBy === 2 ? -2 : 2)}
-          className="w-full flex-center cursor-pointer hover:underline"
+          className="w-full md:flex-center cursor-pointer hover:underline"
         >
           <SortingIcon sortBy={sortBy} thisId={2} type="alpha" />
           Asset
@@ -41,7 +41,7 @@ export const CryptoHeader = ({ setSortBy, sortBy }) => {
       <Th>
         <div
           onClick={() => setSortBy(sortBy === 2.5 ? -2.5 : 2.5)}
-          className="w-full flex-center cursor-pointer hover:underline"
+          className="w-full md:flex-center cursor-pointer hover:underline"
         >
           <SortingIcon sortBy={sortBy} thisId={2.5} />#
         </div>
@@ -49,7 +49,7 @@ export const CryptoHeader = ({ setSortBy, sortBy }) => {
       <Th>
         <div
           onClick={() => setSortBy(sortBy === 3 ? -3 : 3)}
-          className="w-full flex-center cursor-pointer hover:underline"
+          className="w-full md:flex-center cursor-pointer hover:underline"
         >
           <SortingIcon sortBy={sortBy} thisId={3} />
           Price
@@ -58,7 +58,7 @@ export const CryptoHeader = ({ setSortBy, sortBy }) => {
       <Th>
         <div
           onClick={() => setSortBy(sortBy === 4 ? -4 : 4)}
-          className="w-full flex-center cursor-pointer hover:underline"
+          className="w-full md:flex-center cursor-pointer hover:underline"
         >
           <SortingIcon sortBy={sortBy} thisId={4} />
           Holdings
@@ -67,7 +67,7 @@ export const CryptoHeader = ({ setSortBy, sortBy }) => {
       <Th>
         <div
           onClick={() => setSortBy(sortBy === 5 ? -5 : 5)}
-          className="w-full flex-center cursor-pointer hover:underline"
+          className="w-full md:flex-center cursor-pointer hover:underline"
         >
           <SortingIcon sortBy={sortBy} thisId={5} />
           24h%
@@ -76,19 +76,19 @@ export const CryptoHeader = ({ setSortBy, sortBy }) => {
       <Th>
         <div
           onClick={() => setSortBy(sortBy === 5 ? -5 : 5)}
-          className="w-full flex-center cursor-pointer hover:underline"
+          className="w-full md:flex-center cursor-pointer hover:underline"
         >
           <SortingIcon sortBy={sortBy} thisId={5} />
           7d%
         </div>
       </Th>
       <Th>
-        <div className="w-full flex-center">7d evolution</div>
+        <div className="w-full md:flex-center">7d evolution</div>
       </Th>
       <Th>
         <div
           onClick={() => setSortBy(sortBy === 5 ? -5 : 5)}
-          className="w-full flex-center cursor-pointer hover:underline"
+          className="w-full md:flex-center cursor-pointer hover:underline"
         >
           <SortingIcon sortBy={sortBy} thisId={5} />1 y%
         </div>
@@ -96,7 +96,7 @@ export const CryptoHeader = ({ setSortBy, sortBy }) => {
       <Th>
         <div
           onClick={() => setSortBy(sortBy === 6 ? -6 : 6)}
-          className="w-full flex-center cursor-pointer hover:underline"
+          className="w-full md:flex-center cursor-pointer hover:underline"
         >
           <SortingIcon sortBy={sortBy} thisId={6} />
           APR
@@ -105,7 +105,7 @@ export const CryptoHeader = ({ setSortBy, sortBy }) => {
       <Th>
         <div
           onClick={() => setSortBy(sortBy === 7 ? -7 : 7)}
-          className="w-full flex-center cursor-pointer hover:underline"
+          className="w-full md:flex-center cursor-pointer hover:underline"
         >
           <SortingIcon sortBy={sortBy} thisId={7} />
           Asset %
@@ -132,7 +132,7 @@ export const CryptoRow = ({ i, item }) => {
   }, [i])
 
   return (
-    <Tr key={i} className="h-20">
+    <Tr key={i} className="md:h-20">
       <Td
         className={"cursor-pointer hover:underline"}
         style={institutionStyle(institution)}

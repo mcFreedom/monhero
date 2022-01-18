@@ -29,7 +29,6 @@ function MyApp({ Component, pageProps }) {
   const signUp = router.asPath === "/sign-up"
   const [showModal, setShowModal] = useState(true)
   const [userPresent, setUserPresent] = useState(false)
-  console.log({ userPresent })
 
   return (
     <UserbaseProvider>
