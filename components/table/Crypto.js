@@ -138,7 +138,7 @@ export const CryptoRow = ({ i, item }) => {
         style={institutionStyle(institution)}
         key={`mem${i}`}
       >
-        <Link href={`/institution/${institution?.id}`}>
+        <Link href={`/institution/${institution?.id}`} passHref>
           <div
             className="flex items-cente text-sm"
             data-for={"institution-total"}
@@ -155,7 +155,7 @@ export const CryptoRow = ({ i, item }) => {
             <Image src={item.image} width={40} height={40} />
           ) : null}
 
-          <Link href={`/asset/${item.id}`}>
+          <Link href={`/asset/${item.id}`} passHref>
             <div className="cursor-pointer hover:underline px-1">
               {item.name}
               <FaLink className="md:hidden ml-1" />

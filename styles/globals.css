@@ -120,6 +120,9 @@ body h3 {
 .btn{
   @apply bg-blue-500 p-2 mt-2 mx-auto text-center text-white rounded;
 }
+.btn[type=submit]{
+  @apply bg-blue-500;
+}
 .btn:hover{
   @apply bg-blue-600;
 }
@@ -287,18 +290,3 @@ body h3 {
 .apexcharts-legend {
   @apply flex-col flex-center;
 }
-
-
-  .responsiveTable td .tdBefore {
-    /* Now like a table header */
-    position: absolute;
-    display: block;
-
-    /* Top/left values mimic padding */
-    left: 1rem;
-    width: calc(50% - 20px);
-    white-space: pre-wrap;
-    overflow-wrap: break-word;
-    text-align: left !important;
-    font-weight: 600;
-  }

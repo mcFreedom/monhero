@@ -35,7 +35,7 @@ export const Navbar = forwardRef(({ showModal, styleOnly }, ref) => {
     return (
       <div className="w-screen border-b flex items-center justify-between fixed top-0 bg-white md:text-lg z-10">
         <div className="flex items-center">
-          <Link href={"/assets"}>
+          <Link href={"/assets"} passHref>
             <div
               className={
                 "text-2xl px-2 font-extrabold cursor-pointer relative flex items-center"
@@ -58,7 +58,7 @@ export const Navbar = forwardRef(({ showModal, styleOnly }, ref) => {
       className="bw-screen border-b flex items-center justify-between fixed top-0 bg-white  md:text-lg z-10 w-screen"
     >
       <div className="flex items-center">
-        <Link href={"/assets"}>
+        <Link href={"/assets"} passHref>
           <div
             className={
               "text-2xl px-2 font-extrabold cursor-pointer relative flex items-center"
@@ -81,7 +81,7 @@ export const Navbar = forwardRef(({ showModal, styleOnly }, ref) => {
           <FaBars onClick={() => setMobileMenu(true)} />
         )}
         {mobileMenu ? (
-          <div className="flex justify-center items-end flex-col absolute mt-3     bg-white right-0 w-screen px-5  border-b">
+          <div className="flex justify-center items-end flex-col absolute mt-2   ton  bg-white right-0 w-screen px-5  border-b">
             <Navigation path={path} />
             <MenuOptions
               error={error}
@@ -145,11 +145,11 @@ const Navigation = ({ path }) => {
 
   return (
     <div className="flex  flex-col md:flex-row md:items-center text-right md:row divide-x-1/2">
-      <Link href={"/assets"}>
+      <Link href={"/assets"} passHref>
         <div
           className={`${
             path === "portfolio" ? "font-extrabold" : ""
-          } md:px-2 cursor-pointer h-10 md:h-initial md:pr-5 hover:bg-gray-300`}
+          } md:px-2 my-2 md:my-0 cursor-pointer h-10 md:h-initial md:pr-5 hover:bg-gray-300`}
         >
           Assets
           <div className="text-gray-600">
@@ -168,11 +168,11 @@ const Navigation = ({ path }) => {
           </div>
         </div>
       </Link>
-      <Link href={"/liabilities"}>
+      <Link href={"/liabilities"} passHref>
         <div
           className={`${
             path === "portfolio" ? "font-extrabold" : ""
-          } md:px-2 cursor-pointer h-10 md:h-initial md:pr-5 hover:bg-gray-300`}
+          } md:px-2 my-2 md:my-0 cursor-pointer h-10 md:h-initial md:pr-5 hover:bg-gray-300`}
         >
           Liabilities
           <div className="text-gray-600">
@@ -191,11 +191,11 @@ const Navigation = ({ path }) => {
           </div>
         </div>
       </Link>
-      <Link href={"/portfolio"}>
+      <Link href={"/portfolio"} passHref>
         <div
           className={`${
             path === "portfolio" ? "font-extrabold" : ""
-          } md:px-2 cursor-pointer h-10 md:h-initial hover:bg-gray-300`}
+          } md:px-2 my-2 md:my-0 cursor-pointer h-10 md:h-initial hover:bg-gray-300`}
         >
           Net Worth
           <div className="text-gray-600">
@@ -214,7 +214,7 @@ const Navigation = ({ path }) => {
           </div>
         </div>
       </Link>
-      <Link href="/new-asset">
+      <Link href="/new-asset" passHref>
         <button className="btn small nav-bar my-2 md:my-1 h-10 md:h-initial flex-center ml-2">
           <FaPlus className="pr-1" />
           Add
