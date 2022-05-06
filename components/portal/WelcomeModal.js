@@ -21,8 +21,8 @@ export const WelcomeModal = ({ shown = false, setIsShown = () => {} }) => {
 
           <div className="flex-center flex-col">
             <div className="py-4">
-              <strong>MonHero</strong> intends to help you make sense of your
-              finances
+              <strong>Secret Assets</strong> intends to help you make sense of
+              your finances
             </div>
             <div>
               Enter all of your assets and see their value in any of our
@@ -48,15 +48,14 @@ export const WelcomeModal = ({ shown = false, setIsShown = () => {} }) => {
             </div>
             <div className="py-4">
               If you spot any bugs, please let us know at
-              <href mailto="hello@monhero.estate" className="a">
+              <href mailto="hello@secassets.com" className="a">
                 {" "}
-                hello@monhero.estate
+                hello@secassets.com
               </href>
             </div>
             <button onClick={() => getStarted()} className="btn mb-2">
               Let&apos;s get started
             </button>
-          
           </div>
         </div>
       </div>

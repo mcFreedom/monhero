@@ -11,10 +11,10 @@ export const HelpButton = () => {
       />
       <div className="flex flex-col text-right">
         For any issue
-        <a href="mailto:hello@monhero.estate" className="a">
+        <a href="mailto:hello@secassets.com" className="a">
           Email us
         </a>
-        hello@monhero.estate
+        hello@secassets.com
       </div>
     </div>
   ) : (

@@ -28,12 +28,13 @@ function MyApp({ Component, pageProps }) {
   const demoMode = router.asPath === "/demo"
   const signUp = router.asPath === "/sign-up"
   const [showModal, setShowModal] = useState(true)
-  const [userPresent, setUserPresent] = useState(false)
-
+  // const [userPresent, setUserPresent] = useState(false)
+  const { user } = useContext(StoreContext)
+  console.log({ user })
   return (
     <UserbaseProvider>
-      <Store setShowModal={setShowModal} setUserPresent={setUserPresent}>
-        {!demoMode && userPresent === false ? (
+      <Store setShowModal={setShowModal}>
+        {!demoMode && !user ? (
           <>
             <Navbar styleOnly />
             <LogIn signUpProp={signUp} />
@@ -82,14 +83,14 @@ const Rate = ({ children }) => {
     </RateProvider>
   )
 }
-const Store = ({ children, setShowModal, setUserPresent }) => {
+
+const Store = ({ children, setShowModal }) => {
   const { user, databases, setDatabases } = useContext(UserbaseContext)
   useEffect(() => {
     if (user) {
       setShowModal(false)
-      setUserPresent(true)
     }
-  }, [user])
+  }, [user, setShowModal])
   return (
     <StoreProvider
       user={user}

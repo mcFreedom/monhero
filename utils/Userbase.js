@@ -1,5 +1,4 @@
 import React, { createContext, useEffect, useState } from "react"
-import { PropTypes } from "prop-types"
 import userbase from "userbase-js"
 import { constants } from "./constants"
 const { exampleState } = constants

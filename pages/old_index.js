@@ -52,7 +52,7 @@ export default function Home() {
   return (
     <container>
       <Head>
-        <title>Monhero</title>
+        <title>Secret Assets</title>
       </Head>
       <main className="p-0 mb-32 md:mb-20 mx-48 flex-center flex-col w-full relative">
         <div className="flex w-full mt-20 mb-20">

@@ -5,9 +5,10 @@ import { useRouter } from "next/router"
 
 export const UserModal = ({ shown = false, setIsShown = () => {} }) => {
   const router = useRouter()
-  const { userMethod, user, error, loading } = useContext(UserbaseContext)
+  const { userMethod, error, loading, user } = useContext(UserbaseContext)
   const { error: storeError } = useContext(StoreContext)
 
+  
   const [logIn, setLogIn] = useState(true)
   const [loginForm, setLoginForm] = useState({ username: "", password: "" })
 
@@ -16,7 +17,7 @@ export const UserModal = ({ shown = false, setIsShown = () => {} }) => {
 
   const handleLogout = () => {
     userMethod("signOut")
-    
+
     router.push("/")
   }
   const handleSubmit = (event) => {
@@ -37,7 +38,9 @@ export const UserModal = ({ shown = false, setIsShown = () => {} }) => {
   return shown ? (
     <div className="modal-style md:m-36 p-4 md:p-16 absolute top-10 left-0 right-0">
       <div className="flex-center justify-between w-full   p-10">
-        {!user ? (
+        {user ? (
+          <SignOut handleLogout={handleLogout} user={user} />
+        ) : (
           <div>
             <span>{logIn ? "No account?" : "Already have an account?"}</span>
 
@@ -45,10 +48,7 @@ export const UserModal = ({ shown = false, setIsShown = () => {} }) => {
               {logIn ? "Sign up" : "Log In"}
             </button>
           </div>
-        ) : (
-          <div></div>
         )}
-
         <FaTimes
           onClick={() => setIsShown(false)}
           className="cursor-pointer text-lg m-3"
@@ -57,9 +57,7 @@ export const UserModal = ({ shown = false, setIsShown = () => {} }) => {
       {storeError ? (
         <div className="flex-center font-bold text-red-500">{storeError}</div>
       ) : null}
-      {user ? (
-        <SignOut handleLogout={handleLogout} user={user} />
-      ) : (
+      {!user && (
         <LogIn
           loginForm={loginForm}
           handleInputChange={handleInputChange}

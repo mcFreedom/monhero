@@ -40,16 +40,16 @@ export default function LogIn({ signUpProp = false }) {
   }
   const resetPassword = () => setLoginForm({ ...loginForm, password: "" })
 
-  const { user, setUser } = useContext(UserbaseContext)
+  const { user, userMethod } = useContext(UserbaseContext)
+
   const handleLogout = () => {
     userbase
       .signOut()
       .then(() => {
-        setUser(null)
-        router.push === "/"
+        userMethod("signOut")
+        router.push(process.env.NEXT_PUBLIC_MARKETING_URL)
       })
       .catch((err) => {
-        if (err === "UserAlreadySignedIn") router.push === "/"
         alert(err)
       })
   }
@@ -64,12 +64,17 @@ export default function LogIn({ signUpProp = false }) {
           rememberMe: "local",
         })
         .then((ur) => {
-          setUser(ur)
-          router.push === "/"
+          userMethod("signIn", ur)
+          router.push("/assets")
         })
         .catch((err) => {
-          if (err === "UserAlreadySignedIn") router.push === "/"
-          alert(err)
+          if(err.message === "Already signed in."){
+            userPresent("")
+            router.push("/assets")
+          } else{
+
+            alert(err)
+          }
         })
   }
   const handleRegSubmit = (event) => {
@@ -82,8 +87,8 @@ export default function LogIn({ signUpProp = false }) {
           rememberMe: "local",
         })
         .then((ur) => {
-          setUser(ur)
-          router.push === "/"
+          userMethod("signUp", ur)
+          router.push("/assets")
         })
         .catch((err) => alert(err))
   }
@@ -91,7 +96,9 @@ export default function LogIn({ signUpProp = false }) {
   return (
     <div className="flex-center h-screen mt-10">
       <Head>
-        <title>{signUp ? "Sign Up - MonHero" : "Log In - Monhero"}</title>
+        <title>
+          {signUp ? "Sign Up - Secret Assets" : "Log In - Secret Assets"}
+        </title>
       </Head>
       {user ? (
         <div>
@@ -206,7 +213,7 @@ export default function LogIn({ signUpProp = false }) {
                           By clicking the button, you also accept our{" "}
                           <a
                             className="a"
-                            href="www.monhero.estate/terms"
+                            href="www.secassets.com/terms"
                             target="_blank"
                             rel="noopener noreferrer"
                           >

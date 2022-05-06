@@ -41,7 +41,7 @@ export const Navbar = forwardRef(({ showModal, styleOnly }, ref) => {
                 "text-2xl px-2 font-extrabold cursor-pointer relative flex items-center"
               }
             >
-              MonHero
+              Secret Assets
               <div className="bg-red-500 text-white text-xs p-1 rounded rotate-12 mt-1 ml-1">
                 beta
               </div>
@@ -64,7 +64,7 @@ export const Navbar = forwardRef(({ showModal, styleOnly }, ref) => {
               "text-2xl px-2 font-extrabold cursor-pointer relative flex items-center"
             }
           >
-            MonHero
+            Secret Assets
             <div className="bg-red-500 text-white text-xs p-1 rounded rotate-12 mt-1 ml-1">
               beta
             </div>

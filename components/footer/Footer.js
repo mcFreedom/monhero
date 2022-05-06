@@ -123,7 +123,7 @@ export const Footer = () => {
         <title>
           {assets.length > 0
             ? totalForAssets(assets, false, false, true)
-            : "MonHero"}
+            : "Secret Assets"}
         </title>
       </Head>
       <div className="w-full md:w-1/4 flex flex-col items-end pr-10 pt-2">
