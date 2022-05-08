@@ -8,7 +8,6 @@ export const UserModal = ({ shown = false, setIsShown = () => {} }) => {
   const { userMethod, error, loading, user } = useContext(UserbaseContext)
   const { error: storeError } = useContext(StoreContext)
 
-  
   const [logIn, setLogIn] = useState(true)
   const [loginForm, setLoginForm] = useState({ username: "", password: "" })
 
@@ -36,8 +35,8 @@ export const UserModal = ({ shown = false, setIsShown = () => {} }) => {
   }
 
   return shown ? (
-    <div className="modal-style md:m-36 p-4 md:p-16 absolute top-10 left-0 right-0">
-      <div className="flex-center justify-between w-full   p-10">
+    <div className="modal-style md:m-36 p-4 md:p-16 absolute top-10 left-0 right-0 z-30">
+      <div className="flex-center justify-between w-full  p-10">
         {user ? (
           <SignOut handleLogout={handleLogout} user={user} />
         ) : (

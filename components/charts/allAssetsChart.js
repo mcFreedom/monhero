@@ -6,6 +6,7 @@ import { apexChartTools } from "../../utils"
 const { chartOptions, series: seriesExample } = apexChartTools
 
 const allAssetsChart = ({ currency, series }) => {
+  const loadedSeries = series || seriesExample
   return (
     <div className="block">
       <div className="absolute text-center top-1/4 w-full h-full">
@@ -15,7 +16,7 @@ const allAssetsChart = ({ currency, series }) => {
       <div className="bg-white opacity-5">
         <Chart
           options={chartOptions(currency)}
-          series={series || seriesExample}
+          series={loadedSeries}
           type="line"
           width="100%"
           height="315px"

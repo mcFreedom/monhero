@@ -4,7 +4,9 @@ import React, {
   useEffect,
   useMemo,
   useState,
+  useContext,
 } from "react"
+import { UserbaseContext } from "../utils"
 import { PropTypes } from "prop-types"
 import { reducer } from "./Reducer"
 import { constants } from "./constants"
@@ -37,11 +39,13 @@ function init() {
 
 export const StoreProvider = ({
   children,
-  user = null,
-  databases = null,
+  // user = null,
+  // databases = null,
   // setDatabases = () => {},
   setShowModal = () => {},
 }) => {
+  const { user, databases } = useContext(UserbaseContext)
+
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [state, dispatch] = useReducer(reducer, newState, init)

@@ -69,10 +69,8 @@ export default function LogIn({ signUpProp = false }) {
         })
         .catch((err) => {
           if(err.message === "Already signed in."){
-            userPresent("")
             router.push("/assets")
           } else{
-
             alert(err)
           }
         })

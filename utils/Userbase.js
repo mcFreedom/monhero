@@ -21,7 +21,9 @@ export const UserbaseProvider = ({ children }) => {
   useEffect(() => {
     userbase
       .init({ appId })
-      .then((session) => session.user && setUser(session.user))
+      .then((session) => {
+        if (session.user) setUser(session.user)
+      })
       .catch((err) => errorHandling(err))
   }, [])
 

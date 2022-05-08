@@ -66,7 +66,9 @@ const PortfolioCrypto = () => {
               <div className="mt-5 w-full px-2">
                 {assetsForInstitution(assets, institution).map((a, i) => {
                   const asset = a.item
-                  console.log({ dp: asset.dataPoints })
+                  {
+                    /* console.log({ dp: asset.dataPoints }) */
+                  }
                   {
                     /* const [totalReturn, ROI] = returnPercentage(
                     currentPrice,

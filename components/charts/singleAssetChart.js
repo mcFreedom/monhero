@@ -6,10 +6,11 @@ import { apexChartTools } from "../../utils"
 const { chartOptions, series: seriesExample } = apexChartTools
 
 const allAssetsChart = ({ currency, series }) => {
+  const loadedSeries = series || seriesExample
   return (
     <Chart
       options={chartOptions(currency)}
-      series={series || seriesExample}
+      series={loadedSeries}
       type="line"
       width="100%"
       height="315px"

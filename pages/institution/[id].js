@@ -69,7 +69,7 @@ const Institution = () => {
     if (inst) {
       setInstitution(inst.item)
       setAsset(newAsset(inst.item.id))
-      console.log({ asset })
+      // console.log({ asset })
     }
   }, [institutions, pageId])
 

@@ -30,7 +30,7 @@ export default function Settings() {
       <div className="bg-white rounded md:w-1/2 mx-auto p-5 my-20 ">
         <div className="flex items-center justify-between w-full">
           <div className="cursor-pointer">
-            <Link href="/">
+            <Link href="/" passHref>
               <FaHome className="self-start" />
             </Link>
           </div>
