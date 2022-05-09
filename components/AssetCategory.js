@@ -65,7 +65,7 @@ export const AssetCategory = ({ category = "crypto", assets }) => {
       rateFor,
       percentageChangeFor,
     )
-    setAssetsFormatted(a)
+    if (assetsFormatted !== a) setAssetsFormatted(a)
   }, [assets, category])
 
   useEffect(() => {

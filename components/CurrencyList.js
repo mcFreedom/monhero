@@ -37,19 +37,21 @@ export const CurrencyList = ({
   const [options, setOptions] = useState(initialOptions)
   const [, setInputValue] = useState("")
 
+  const getRates = async () => {
+    await axios(`${BACKEND_URL}/currency-list?currency-picker=true`)
+      .then((response) => {
+        console.log({ data: response.data })
+        setOptions(response.data)
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error)
+      })
+  }
+
   useEffect(() => {
     setInputValue(inputValueProp)
   }, [inputValueProp])
   useEffect(() => {
-    const getRates = async () => {
-      await axios(`${BACKEND_URL}/currency-list?currency-picker=true`)
-        .then((response) => {
-          setOptions(response.data)
-        })
-        .catch((error) => {
-          console.error("Error fetching data: ", error)
-        })
-    }
     getRates()
   }, [])
 

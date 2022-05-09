@@ -7,33 +7,27 @@ export function useRate() {
   const { rates, loading, error } = useContext(RateContext)
 
   const rateFor = (toCurrency, property = "rate") => {
-    if (
-      toCurrency &&
-      !loading &&
-      rates &&
-      rates[toCurrency?.value?.toLowerCase()]
-    ) {
-      // console.log({ rates: rates[toCurrency.toLowerCase()] })
-      return rates[toCurrency.toLowerCase()][property]
+    // console.log({ loading, rates, ok: rates[toCurrency?.toLowerCase()] })
+    if (toCurrency && rates && rates[toCurrency?.toLowerCase()]) {
+      return rates[toCurrency.toLowerCase()]?.[property]
     }
     return property === "rate" ? 1 : null
   }
   const percentageChangeFor = (toCurrency) => {
     const periods = ["24h", "7d", "1y"]
-    if (toCurrency && !loading && rates && rates[toCurrency.toLowerCase()]) {
+    const percentages = rates?.[toCurrency?.toLowerCase()]
+    if (toCurrency && percentages) {
       const result = {}
       periods.map(
         (period) =>
-          (result[period] =
-            rates[toCurrency.toLowerCase()][
-              `price_change_percentage_${period}`
-            ]),
+          (result[period] = percentages[`price_change_percentage_${period}`]),
       )
+      console.log(result)
       return result
     }
-    return 0
+    return {}
   }
-  return { rates, rateFor, loading, error, percentageChangeFor }
+  return { rates, rateFor, percentageChangeFor, loading, error }
 }
 
 export function useVisibility() {

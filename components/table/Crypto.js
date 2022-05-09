@@ -126,6 +126,7 @@ export const CryptoRow = ({ i, item }) => {
     if (d7 > 5) return "green"
     return "blue"
   }
+
   useEffect(() => {
     const x = institutions.find((i) => i.item.id === item.institution)
     setInstitution(x.item)

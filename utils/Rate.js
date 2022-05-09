@@ -37,7 +37,6 @@ export const RateProvider = ({ children, currency = "usd", to = [] }) => {
       await axios(`${BACKEND_URL}/rate?from=${currency}&to=${toCurrencies}`)
         .then((response) => {
           if (response.data) {
-            setLoading(true)
             const data = response.data || {}
             data["lastUpdated"] = new Date()
             setRates(data)
@@ -61,18 +60,19 @@ export const RateProvider = ({ children, currency = "usd", to = [] }) => {
     })
   }, [])
 
-  useEffect(() => {
-    let interval = null
-    if (seconds > 1 && seconds % 300 === 0) {
-      getData()
-      console.log("$")
-    }
-    interval = setInterval(() => {
-      setSeconds((seconds) => seconds + 10)
-    }, 10000)
+  // TODO: bring back auto refresh
+  // useEffect(() => {
+  //   let interval = null
+  //   if (seconds > 1 && seconds % 300 === 0) {
+  //     getData()
+  //     console.log("$")
+  //   }
+  //   interval = setInterval(() => {
+  //     setSeconds((seconds) => seconds + 10)
+  //   }, 10000)
 
-    return () => clearInterval(interval)
-  }, [seconds, getData])
+  //   return () => clearInterval(interval)
+  // }, [seconds, getData])
 
   useEffect(() => {
     if (to.length > 0) {
