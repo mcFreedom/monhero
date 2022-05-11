@@ -8,103 +8,108 @@ import { useVisibility, useTotalAmounts, useRate } from "../utils/hooks"
 import { FaSpinner } from "react-icons/fa"
 import { StoreContext } from "../utils"
 
-import { CurrencyPicker } from "../components"
+import { CurrencyPicker, WarningBar } from "../components"
 import { RateContext } from "../utils"
 import moment from "moment"
 
-export const Navbar = forwardRef(({ showModal, styleOnly }, ref) => {
-  const { rates, error, fetchData } = useContext(RateContext)
-  const [timeAgo, setTimeAgo] = useState("A while back")
-  const [mobileMenu, setMobileMenu] = useState(false)
-  const router = useRouter()
-  const path = router.pathname
+export const Navbar = forwardRef(
+  ({ styleOnly, warning = false, setShowModal = () => {} }, ref) => {
+    const { rates, error, fetchData } = useContext(RateContext)
+    const [timeAgo, setTimeAgo] = useState("A while back")
+    const [mobileMenu, setMobileMenu] = useState(false)
+    const router = useRouter()
+    const path = router.pathname
 
-  useEffect(() => {
-    let interval = null
-    interval = setInterval(() => {
-      if (rates && rates["lastUpdated"]) {
-        setTimeAgo(moment(rates["lastUpdated"]).fromNow())
-      } else {
-        setTimeAgo("A while back")
-      }
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [rates])
+    useEffect(() => {
+      let interval = null
+      interval = setInterval(() => {
+        if (rates && rates["lastUpdated"]) {
+          setTimeAgo(moment(rates["lastUpdated"]).fromNow())
+        } else {
+          setTimeAgo("A while back")
+        }
+      }, 5000)
+      return () => clearInterval(interval)
+    }, [rates])
 
-  if (styleOnly) {
-    return (
-      <div className="w-screen border-b flex items-center justify-between fixed top-0 bg-white md:text-lg z-10">
-        <div className="flex items-center">
-          <Link href={"/assets"} passHref>
-            <div
-              className={
-                "text-2xl px-2 font-extrabold cursor-pointer relative flex items-center"
-              }
-            >
-              Secret Assets
-              <div className="bg-red-500 text-white text-xs p-1 rounded rotate-12 mt-1 ml-1">
-                beta
+    if (styleOnly) {
+      return (
+        <div className="w-screen border-b flex items-center justify-between fixed top-0 bg-white md:text-lg z-10">
+          <div className="flex items-center">
+            <Link href={"/assets"} passHref>
+              <div
+                className={
+                  "text-2xl px-2 font-extrabold cursor-pointer relative flex items-center"
+                }
+              >
+                Secret Assets
+                <div className="bg-red-500 text-white text-xs p-1 rounded rotate-12 mt-1 ml-1">
+                  beta
+                </div>
               </div>
-            </div>
-          </Link>
+            </Link>
+          </div>
         </div>
-      </div>
-    )
-  }
+      )
+    }
 
-  return (
-    <div
-      ref={ref}
-      className="bw-screen border-b flex items-center justify-between fixed top-0 bg-white  md:text-lg z-10 w-screen"
-    >
-      <div className="flex items-center">
-        <Link href={"/assets"} passHref>
-          <div
-            className={
-              "text-2xl px-2 font-extrabold cursor-pointer relative flex items-center"
-            }
-          >
-            Secret Assets
-            <div className="bg-red-500 text-white text-xs p-1 rounded rotate-12 mt-1 ml-1">
-              beta
+    return (
+      <div className="flex flex-col top-0">
+        <div
+          ref={ref}
+          className="bw-screen border-b flex items-center justify-between bg-white  md:text-lg z-10 w-screen"
+        >
+          <div className="flex items-center">
+            <Link href={"/assets"} passHref>
+              <div
+                className={
+                  "text-2xl px-2 font-extrabold cursor-pointer relative flex items-center"
+                }
+              >
+                Secret Assets
+                <div className="bg-red-500 text-white text-xs p-1 rounded rotate-12 mt-1 ml-1">
+                  beta
+                </div>
+              </div>
+            </Link>
+            <div className="hidden md:block">
+              <Navigation />
             </div>
           </div>
-        </Link>
-        <div className="hidden md:block">
-          <Navigation />
-        </div>
-      </div>
-      <div className="md:hidden pr-5">
-        {mobileMenu ? (
-          <FaTimes onClick={() => setMobileMenu(false)} />
-        ) : (
-          <FaBars onClick={() => setMobileMenu(true)} />
-        )}
-        {mobileMenu ? (
-          <div className="flex justify-center items-end flex-col absolute mt-2   ton  bg-white right-0 w-screen px-5  border-b">
-            <Navigation path={path} />
+          <div className="md:hidden pr-5">
+            {mobileMenu ? (
+              <FaTimes onClick={() => setMobileMenu(false)} />
+            ) : (
+              <FaBars onClick={() => setMobileMenu(true)} />
+            )}
+            {mobileMenu ? (
+              <div className="flex justify-center items-end flex-col absolute mt-2   ton  bg-white right-0 w-screen px-5  border-b">
+                <Navigation path={path} />
+                <MenuOptions
+                  error={error}
+                  showModal={setShowModal}
+                  timeAgo={timeAgo}
+                  fetchData={fetchData}
+                />{" "}
+              </div>
+            ) : (
+              <></>
+            )}
+          </div>
+          <div className="right-end px-2 hidden md:flex md:justify-end md:items-center">
             <MenuOptions
               error={error}
-              showModal={showModal}
+              showModal={setShowModal}
               timeAgo={timeAgo}
               fetchData={fetchData}
-            />{" "}
+            />
           </div>
-        ) : (
-          <></>
-        )}
+        </div>
+        {warning ? <WarningBar setShowModal={setShowModal} /> : <></>}
       </div>
-      <div className="right-end px-2 hidden md:flex md:justify-end md:items-center">
-        <MenuOptions
-          error={error}
-          showModal={showModal}
-          timeAgo={timeAgo}
-          fetchData={fetchData}
-        />
-      </div>
-    </div>
-  )
-})
+    )
+  },
+)
 
 const MenuOptions = ({ error, timeAgo, showModal, fetchData }) => {
   return (

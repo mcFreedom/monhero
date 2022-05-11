@@ -40,8 +40,7 @@ export const CurrencyList = ({
   const getRates = async () => {
     await axios(`${BACKEND_URL}/currency-list?currency-picker=true`)
       .then((response) => {
-        console.log({ data: response.data })
-        setOptions(response.data)
+         setOptions(response.data)
       })
       .catch((error) => {
         console.error("Error fetching data: ", error)

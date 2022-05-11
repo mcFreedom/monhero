@@ -10,7 +10,7 @@ import {
 } from "../utils"
 import { useContext } from "react"
 import { helpers, assetMethods } from "../utils"
-import { Navbar, WarningBar, HelpButton } from "../components"
+import { Navbar, HelpButton } from "../components"
 import Head from "next/head"
 import { UserModal } from "../components/portal/UserModal"
 const { retrieveLocalStorage } = helpers
@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter()
   useEffect(() => {
     retrieveLocalStorage("tutorialAccepted").then((value) => {
-      setShowModal(value?.length > 0)
+      value && value.length > 0 ? setShowModal(true) : setShowModal(false)
     })
   }, [])
   const demoMode = router.asPath === "/demo"
@@ -30,6 +30,8 @@ function MyApp({ Component, pageProps }) {
   const [showModal, setShowModal] = useState(true)
   // const [userPresent, setUserPresent] = useState(false)
   const { user } = useContext(UserbaseContext)
+  const userValid = (user && user?.length > 0) || false
+
   return (
     <UserbaseProvider>
       <Store setShowModal={setShowModal}>
@@ -48,13 +50,10 @@ function MyApp({ Component, pageProps }) {
               />
             </Head>
             <Rate>
-              <Navbar showModal={setShowModal} />
-              <div className="h-full min-h-screen">
-                {demoMode || !user ? (
-                  <WarningBar setShowModal={setShowModal} />
-                ) : (
-                  <></>
-                )}
+              <div>
+                <Navbar setShowModal={setShowModal} warning={!userValid} />
+              </div>
+              <div className="min-h-screen">
                 <Component {...pageProps} />
                 <UserModal
                   shown={demoMode ? false : showModal}

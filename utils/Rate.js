@@ -56,7 +56,7 @@ export const RateProvider = ({ children, currency = "usd", to = [] }) => {
 
   useEffect(() => {
     retrieveData().then((retrievedState) => {
-      setRates(retrievedState)
+      if (retrievedState) setRates(retrievedState)
     })
   }, [])
 
@@ -75,7 +75,7 @@ export const RateProvider = ({ children, currency = "usd", to = [] }) => {
   // }, [seconds, getData])
 
   useEffect(() => {
-    if (to.length > 0) {
+    if (to && to.length > 0) {
       setLoading(true)
       getData()
     }

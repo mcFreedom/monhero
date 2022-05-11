@@ -22,7 +22,6 @@ export function useRate() {
         (period) =>
           (result[period] = percentages[`price_change_percentage_${period}`]),
       )
-      console.log(result)
       return result
     }
     return {}

@@ -10,7 +10,7 @@ export const WarningBar = forwardRef(({ setShowModal }, ref) => {
   return (
     <div
       ref={ref}
-      className="w-screen bg-red-500 text-center text-white mt-8 fixed z-10 text -xs md:text-lg top-3
+      className="w-screen bg-red-500 text-center text-white z-10 text-xs md:text-lg top-3 block
       "
     >
       Try navigating the app to experience the flow as a user who has filled in

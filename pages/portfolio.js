@@ -60,7 +60,7 @@ export default function Portfolio() {
         <title>Portfolio</title>
       </Head>
       <main className="p-0 mb-32 md:mb-8 flex-center flex-col w-full relative">
-        <div className="flex flex-col items-center w-full mt-10 mb-20 px-2 md:px-10 lg:px-20">
+        <div className="flex flex-col items-center w-full mt-10 mb-20 px-2 md:px-10">
           <div
             className="w-full mt-10 text-center hidden md:visible"
             style={{ minHeight: "315px" }}
@@ -68,8 +68,8 @@ export default function Portfolio() {
             <h1>Portfolio</h1>
             <LoadableComponent currency={currency} />
           </div>
-          <div className="w-full flex flex-col md:flex-row md:justify-between">
-            <div className="w-full md:w-1/2 md:pr-5">
+          <div className="w-full flex flex-col xl:flex-row md:justify-between">
+            <div className="w-full lg:w-1/2 md:pr-5">
               <h3 className="mt-10 mb-5">Assets</h3>
               <TableManager
                 assets={categoryAttributesPositives}
