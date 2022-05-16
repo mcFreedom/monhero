@@ -88,6 +88,7 @@ export const Asset = () => {
         })
         .catch((error) => {
           console.error("Error fetching data: ", error)
+          setSeries([])
         })
     }
   }, [asset, asset?.currency])
@@ -163,7 +164,7 @@ export const Asset = () => {
       <div className="flex justify-between items-center mt-10" id="title">
         <h3 className="pb-0 text-3xl pr-3">{`${asset?.name}`}</h3>
 
-        <Link href={`/institution/${institution?.id}`}>
+        <Link href={`/institution/${institution?.id}`} passHref>
           <div data-for={"edit"} data-tip>
             <FaCog className="text-gray-500 text-sm cursor-pointer" />
           </div>
@@ -222,7 +223,7 @@ export const Asset = () => {
           </div>
 
           <div className="flex flex-col w-full md:ml-2 items-start">
-            {/* {asset?.dataPoints.length > 0 ? (
+            {/* {asset?.dataPoints?.length > 0 ? (
               <div className="bg-gray-200">
                 <Chart
                   data={data}

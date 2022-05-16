@@ -18,7 +18,7 @@ export const Percentages = ({ percentages = null }) => {
             percentages.map((percentage, index) => {
               let rounding = ""
               if (index === 0) rounding = "rounded-l"
-              if (index + 1 === percentages.length) rounding += " rounded-r"
+              if (index + 1 === percentages?.length) rounding += " rounded-r"
               return (
                 <Fragment key={`percentage${index}`}>
                   <div

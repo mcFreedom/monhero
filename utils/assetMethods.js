@@ -30,15 +30,15 @@ const assetsForCategory = (assets, institutions, categoryName) => {
 }
 
 const assetAmountAt = (day, dataPoints) => {
-  if (dataPoints.length === 0) return 0
+  if (dataPoints?.length === 0) return 0
   const dayObject = new Date(day)
 
   const filtered = dataPoints.filter(
     (data) => dayObject > new Date(data.datetime),
   )
-  return filtered.length > 0
+  return filtered?.length > 0
     ? filtered[0].holdings
-    : dataPoints[dataPoints.length - 1].holdings
+    : dataPoints[dataPoints?.length - 1].holdings
 }
 
 const sortedDatapoints = (asset) => {

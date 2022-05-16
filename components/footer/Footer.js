@@ -51,7 +51,7 @@ export const Footer = () => {
     const grouped = assets.filter((asset) => {
       return currentInst.includes(asset.institution)
     })
-    return grouped.length > 0 ? grouped : null
+    return grouped?.length > 0 ? grouped : null
   }
 
   const percentagesMaker = (assets, total, overallWidth) => {
@@ -97,7 +97,7 @@ export const Footer = () => {
 
   useEffect(() => {
     if (!categories || !institutionsProp) return null
-    if (assets.length > 0) {
+    if (assets?.length > 0) {
       let newActiveAssets = []
       let newActiveLiabilities = []
       let positives = assets.filter((a) => !a.liability)
@@ -121,7 +121,7 @@ export const Footer = () => {
     <footer className="flex-center w-screen border-top border border-gray-200 fixed flex-col md:flex-row bottom-0 left-0 bg-white">
       <Head>
         <title>
-          {assets.length > 0
+          {assets?.length > 0
             ? totalForAssets(assets, false, false, true)
             : "Secret Assets"}
         </title>

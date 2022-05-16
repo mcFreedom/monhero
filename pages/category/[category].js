@@ -27,7 +27,7 @@ const Category = () => {
   } = useContext(StoreContext)
 
   const newInstitutionId = () => {
-    return institutions && institutions.length > 0
+    return institutions && institutions?.length > 0
       ? [...institutions].sort((a, b) => b.item.id - a.item.id)[0]["item"][
           "id"
         ] + 1
@@ -51,7 +51,7 @@ const Category = () => {
 
   useEffect(() => {
     setInstitution(newInstitution)
-    if (institutions && categoryInstitution(institutions).length < 1) {
+    if (institutions && categoryInstitution(institutions)?.length < 1) {
       setShowInfo(true)
       setShown(true)
     }

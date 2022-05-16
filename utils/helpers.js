@@ -112,8 +112,10 @@ const crossMulti = (proportion, total) => {
 export const retrieveLocalStorage = async (x) => {
   try {
     const value = await localStorage.getItem(x)
-    if (value !== null) {
+    if (value) {
       return JSON.parse(value)
+    } else {
+      return null
     }
   } catch (error) {
     return null

@@ -75,7 +75,7 @@ export const RateProvider = ({ children, currency = "usd", to = [] }) => {
   // }, [seconds, getData])
 
   useEffect(() => {
-    if (to && to.length > 0) {
+    if (to && to?.length > 0) {
       setLoading(true)
       getData()
     }
@@ -83,6 +83,7 @@ export const RateProvider = ({ children, currency = "usd", to = [] }) => {
 
   const context = {
     rates,
+    getData,
     loading,
     error,
   }

@@ -1,6 +1,6 @@
 import { Fragment, useState, useEffect } from "react"
 
-import { Table, Thead, Tbody } from "react-super-responsive-table"
+import { Table, Thead, Tbody, Tr, Th } from "react-super-responsive-table"
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css"
 
 import { PortfolioHeader, PortfolioRow, CryptoRow, CryptoHeader } from "./"
@@ -60,8 +60,9 @@ export const TableManager = ({
   const Header = () => {
     if (category === "portfolio")
       return <PortfolioHeader setSortBy={setSortBy} sortBy={sortBy} />
-    if (category === "crypto")
+    if (category === "crypto") {
       return <CryptoHeader setSortBy={setSortBy} sortBy={sortBy} />
+    }
     return <PortfolioHeader setSortBy={setSortBy} sortBy={sortBy} />
   }
   const Row = ({ i, item, category = "category" }) => {
@@ -75,9 +76,7 @@ export const TableManager = ({
   }
   return (
     <Table key={sortBy}>
-      <Thead>
-        <Header setSortBy={setSortBy} />
-      </Thead>
+      <Header setSortBy={setSortBy} />
       <Tbody>
         {sortCategories().map((item, i) => {
           if (item.hidden) return <Fragment key={i}></Fragment>

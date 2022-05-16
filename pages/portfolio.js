@@ -66,7 +66,7 @@ export default function Portfolio() {
             style={{ minHeight: "315px" }}
           >
             <h1>Portfolio</h1>
-            <LoadableComponent currency={currency} />
+            <LoadableComponent currency={currency || "USD"} />
           </div>
           <div className="w-full flex flex-col xl:flex-row md:justify-between">
             <div className="w-full lg:w-1/2 md:pr-5">

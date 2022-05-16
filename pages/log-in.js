@@ -1,8 +1,7 @@
-import { useContext, useState } from "react"
+import { useContext, useState, useEffect, useCallback } from "react"
 import { UserbaseContext } from "../utils"
-import userbase from "userbase-js"
 import Head from "next/head"
-import { FaExclamationTriangle, FaTimes } from "react-icons/fa"
+import { FaExclamationTriangle, FaTimes, FaSpinner } from "react-icons/fa"
 import { useRouter } from "next/router"
 
 export default function LogIn({ signUpProp = false }) {
@@ -11,6 +10,7 @@ export default function LogIn({ signUpProp = false }) {
 
   const [loginForm, setLoginForm] = useState({ username: "", password: "" })
   const [agreement, setAgreement] = useState("")
+  // const [loading, setLoading] = useState(false)
   const [explainerAccepted, setExplainerAccepted] = useState(false)
   const [passwordStrong, setPasswordStrong] = useState(2)
   const strongRegex = new RegExp(
@@ -34,19 +34,30 @@ export default function LogIn({ signUpProp = false }) {
     }
   }
 
+  const listenToSubmit = useCallback((event) => {
+    if (event.code === "Enter") {
+      signUp ? handleRegSubmit() : handleLoginSubmit()
+    }
+  }, [])
+
+  useEffect(() => {
+    document.addEventListener("keydown", listenToSubmit, false)
+    return () => {
+      document.removeEventListener("keydown", listenToSubmit, false)
+    }
+  }, [])
+
   const handleLoginInputChange = (event) => {
-    if (event.target.name === "password" && signUp) analyze(event.target.value)
+    if (event?.target.name === "password" && signUp) analyze(event.target.value)
     setLoginForm({ ...loginForm, [event.target.name]: event.target.value })
   }
   const resetPassword = () => setLoginForm({ ...loginForm, password: "" })
 
-  const { user, userMethod } = useContext(UserbaseContext)
+  const { user, userMethod, loading } = useContext(UserbaseContext)
 
   const handleLogout = () => {
-    userbase
-      .signOut()
+    userMethod("signOut")
       .then(() => {
-        userMethod("signOut")
         router.push(process.env.NEXT_PUBLIC_MARKETING_URL)
       })
       .catch((err) => {
@@ -55,40 +66,23 @@ export default function LogIn({ signUpProp = false }) {
   }
 
   const handleLoginSubmit = (event) => {
-    event.preventDefault()
+    event?.preventDefault()
+    console.log({ u: loginForm.username, p: loginForm.password })
     if (loginForm.username && loginForm.password)
-      userbase
-        .signIn({
-          username: loginForm.username,
-          password: loginForm.password,
-          rememberMe: "local",
-        })
-        .then((ur) => {
-          userMethod("signIn", ur)
-          router.push("/assets")
-        })
-        .catch((err) => {
-          if(err.message === "Already signed in."){
-            router.push("/assets")
-          } else{
-            alert(err)
-          }
-        })
+      userMethod("signIn", {
+        username: loginForm.username,
+        password: loginForm.password,
+        rememberMe: "local",
+      })
   }
   const handleRegSubmit = (event) => {
-    event.preventDefault()
+    event?.preventDefault()
     if (loginForm.username && loginForm.password && passwordStrong === 0)
-      userbase
-        .signUp({
-          username: loginForm.username,
-          password: loginForm.password,
-          rememberMe: "local",
-        })
-        .then((ur) => {
-          userMethod("signUp", ur)
-          router.push("/assets")
-        })
-        .catch((err) => alert(err))
+      userMethod("signUp", {
+        username: loginForm.username,
+        password: loginForm.password,
+        rememberMe: "local",
+      })
   }
 
   return (
@@ -107,11 +101,13 @@ export default function LogIn({ signUpProp = false }) {
         <div>
           {signUp && !explainerAccepted ? (
             <div className="flex flex-col w-full items-center max-w-500 bg-yellow-400 border-4 border-gray-600 p-5">
+              <div className="flex w-full justify-end">
+                <FaTimes
+                  className="text-xl text-gray-500 mr-0 right-0 cursor-pointer"
+                  onClick={() => setSignUp(false)}
+                />
+              </div>
               <FaExclamationTriangle className="text-xl text-red-500" />
-              <FaTimes
-                className="text-xl text-gray-500 mr-0"
-                onClick={() => setSignUp(false)}
-              />
               This is an end-to-end encrypted app. <br />
               We want to know as little as we can about you, therefore, as you
               sign up:
@@ -189,7 +185,7 @@ export default function LogIn({ signUpProp = false }) {
 
                     <FaTimes
                       className={`right-2 absolute text-gray-400 ${
-                        loginForm.password.length > 0 ? "" : "hidden"
+                        loginForm.password?.length > 0 ? "" : "hidden"
                       }`}
                       onClick={() => resetPassword()}
                     />
@@ -223,12 +219,19 @@ export default function LogIn({ signUpProp = false }) {
                   ) : (
                     <></>
                   )}
-                  <input
-                    type="submit"
-                    onClick={signUp ? handleRegSubmit : handleLoginSubmit}
-                    value={signUp ? "Sign Up" : "Log In"}
-                    className="btn cursor-pointer"
-                  />
+                  {loading ? (
+                    <div className="btn flex items-center">
+                      <FaSpinner className="text-xl animate-spin" />
+                      <span className="pl-2">Decrypting...</span>
+                    </div>
+                  ) : (
+                    <input
+                      type="submit"
+                      onClick={signUp ? handleRegSubmit : handleLoginSubmit}
+                      value={signUp ? "Sign Up" : "Log In"}
+                      className="btn cursor-pointer"
+                    />
+                  )}
                 </form>
               </div>
             </>

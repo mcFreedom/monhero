@@ -9,7 +9,7 @@ export const Liabilities = ({ liabilities }) => {
         liabilities.map((liability, index) => {
           let rounding = ""
           if (index === 0) rounding = "rounded-l"
-          if (index + 1 === liabilities.length) rounding += " rounded-r"
+          if (index + 1 === liabilities?.length) rounding += " rounded-r"
           return (
             <Fragment key={index}>
               <div

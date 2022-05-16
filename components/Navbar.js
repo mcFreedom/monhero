@@ -14,7 +14,7 @@ import moment from "moment"
 
 export const Navbar = forwardRef(
   ({ styleOnly, warning = false, setShowModal = () => {} }, ref) => {
-    const { rates, error, fetchData } = useContext(RateContext)
+    const { rates, error, getData } = useContext(RateContext)
     const [timeAgo, setTimeAgo] = useState("A while back")
     const [mobileMenu, setMobileMenu] = useState(false)
     const router = useRouter()
@@ -89,7 +89,7 @@ export const Navbar = forwardRef(
                   error={error}
                   showModal={setShowModal}
                   timeAgo={timeAgo}
-                  fetchData={fetchData}
+                  fetchData={getData}
                 />{" "}
               </div>
             ) : (
@@ -101,7 +101,7 @@ export const Navbar = forwardRef(
               error={error}
               showModal={setShowModal}
               timeAgo={timeAgo}
-              fetchData={fetchData}
+              getData={getData}
             />
           </div>
         </div>
@@ -111,7 +111,7 @@ export const Navbar = forwardRef(
   },
 )
 
-const MenuOptions = ({ error, timeAgo, showModal, fetchData }) => {
+const MenuOptions = ({ error, timeAgo, showModal, getData }) => {
   return (
     <>
       {error ? (
@@ -119,18 +119,18 @@ const MenuOptions = ({ error, timeAgo, showModal, fetchData }) => {
       ) : null}
       <span
         className="text-xs text-gray-500 h-10 flex items-center cursor-pointer"
-        onClick={() => fetchData()}
+        onClick={() => getData()}
       >
         {`Last rate update: ${timeAgo}`}
       </span>
       <div className="h-10 md:px-2 flex items-center">
         <CurrencyPicker />
       </div>
-      <div className="flex items-center md:px-2">
-        <FaUser className="cursor-pointer h-10" onClick={showModal} />
+      <div className="flex items-center md:px-2" onClick={showModal}>
+        <FaUser className="cursor-pointer h-10" />
         <span className="md:hidden pl-1">Profile</span>
       </div>
-      <Link href={"/settings"}>
+      <Link href={"/settings"} passHref>
         <div className="flex justify-end items-center">
           <FaCog className="cursor-pointer h-10 text-lg" />
           <span className="md:hidden pl-1">Settings</span>
@@ -176,7 +176,7 @@ const Navigation = ({ path }) => {
       <Link href={"/liabilities"} passHref>
         <div
           className={`${
-            path === "portfolio" ? "font-extrabold" : ""
+            path === "/liabilities" ? "font-extrabold bg-grey-200" : ""
           } md:px-2 my-2 md:my-0 cursor-pointer h-10 md:h-initial md:pr-5 hover:bg-gray-300`}
         >
           Liabilities
@@ -199,7 +199,7 @@ const Navigation = ({ path }) => {
       <Link href={"/portfolio"} passHref>
         <div
           className={`${
-            path === "portfolio" ? "font-extrabold" : ""
+            path === "/portfolio" ? "font-extrabold bg-grey-200" : ""
           } md:px-2 my-2 md:my-0 cursor-pointer h-10 md:h-initial hover:bg-gray-300`}
         >
           Net Worth

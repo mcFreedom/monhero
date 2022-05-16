@@ -20,7 +20,7 @@ export const PortfolioRow = ({ i, item, passedFunction }) => {
   return (
     <Tr key={i}>
       <Td className="cursor-pointer hover:underline">
-        <Link href={`/portfolio/${item.name}`}>
+        <Link href={`/portfolio/${item.name}`} passHref>
           <div className="flex items-center">
             {CATEGORIES[item.name]}
             <FaLink className="md:hidden ml-1" />

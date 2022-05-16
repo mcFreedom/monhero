@@ -16,6 +16,7 @@ import { FaPlus } from "react-icons/fa"
 import { useRouter } from "next/router"
 
 export const AssetPage = ({ categoryProp, liabilities = false }) => {
+  // TODO: FIX THIS . Needs to be an active actegory if not picked by router
   const [category, setCategory] = useState(categoryProp)
   const [theseAssets, setTheseAssets] = useState([])
   const [assetsFormatted, setAssetsFormatted] = useState([])
@@ -30,7 +31,7 @@ export const AssetPage = ({ categoryProp, liabilities = false }) => {
   } = useContext(StoreContext)
 
   useEffect(() => {
-    if (assets.length == 0) router.push("/new-asset")
+    if (assets && assets.length == 0) router.push("/new-asset")
     const a = liabilities ? assets.filter((a) => a.item.liability) : assets
     setTheseAssets(a)
   }, [assets])
@@ -74,8 +75,7 @@ export const AssetPage = ({ categoryProp, liabilities = false }) => {
       {assetsFormatted?.length < 1 ? (
         <div className="flex-center flex-col h-full">
           {`No ${liabilities ? "Liabilities" : "Assets"}`}
-
-          <Link href="/new-asset">
+          <Link href="/new-asset" passHref>
             <button className="btn small nav-bar my-2 md:my-1 h-10 md:h-initial flex-center">
               <FaPlus className="pr-1" />
               Add

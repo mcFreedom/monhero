@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import Link from "next/link"
-import { Tr, Td, Th } from "react-super-responsive-table"
+import { Thead, Tr, Td, Th } from "react-super-responsive-table"
 import {
   moneyHelpers,
   // constants,
@@ -19,100 +19,104 @@ const { institutionStyle, capitalize } = helpers
 
 export const CryptoHeader = ({ setSortBy, sortBy }) => {
   return (
-    <Tr>
-      <Th className="text-sm">
-        <div
-          onClick={() => setSortBy(sortBy === 1 ? -1 : 1)}
-          className="w-full md:flex-center cursor-pointer hover:underline"
-        >
-          <SortingIcon sortBy={sortBy} thisId={1} type="alpha" />
-          Institution
-        </div>
-      </Th>
-      <Th>
-        <div
-          onClick={() => setSortBy(sortBy === 2 ? -2 : 2)}
-          className="w-full md:flex-center cursor-pointer hover:underline"
-        >
-          <SortingIcon sortBy={sortBy} thisId={2} type="alpha" />
-          Asset
-        </div>
-      </Th>
-      <Th>
-        <div
-          onClick={() => setSortBy(sortBy === 2.5 ? -2.5 : 2.5)}
-          className="w-full md:flex-center cursor-pointer hover:underline"
-        >
-          <SortingIcon sortBy={sortBy} thisId={2.5} />#
-        </div>
-      </Th>
-      <Th>
-        <div
-          onClick={() => setSortBy(sortBy === 3 ? -3 : 3)}
-          className="w-full md:flex-center cursor-pointer hover:underline"
-        >
-          <SortingIcon sortBy={sortBy} thisId={3} />
-          Price
-        </div>
-      </Th>
-      <Th>
-        <div
-          onClick={() => setSortBy(sortBy === 4 ? -4 : 4)}
-          className="w-full md:flex-center cursor-pointer hover:underline"
-        >
-          <SortingIcon sortBy={sortBy} thisId={4} />
-          Holdings
-        </div>
-      </Th>
-      <Th>
-        <div
-          onClick={() => setSortBy(sortBy === 5 ? -5 : 5)}
-          className="w-full md:flex-center cursor-pointer hover:underline"
-        >
-          <SortingIcon sortBy={sortBy} thisId={5} />
-          24h%
-        </div>
-      </Th>
-      <Th>
-        <div
-          onClick={() => setSortBy(sortBy === 5 ? -5 : 5)}
-          className="w-full md:flex-center cursor-pointer hover:underline"
-        >
-          <SortingIcon sortBy={sortBy} thisId={5} />
-          7d%
-        </div>
-      </Th>
-      <Th>
-        <div className="w-full md:flex-center">7d evolution</div>
-      </Th>
-      <Th>
-        <div
-          onClick={() => setSortBy(sortBy === 5 ? -5 : 5)}
-          className="w-full md:flex-center cursor-pointer hover:underline"
-        >
-          <SortingIcon sortBy={sortBy} thisId={5} />1 y%
-        </div>
-      </Th>
-      <Th>
-        <div
-          onClick={() => setSortBy(sortBy === 6 ? -6 : 6)}
-          className="w-full md:flex-center cursor-pointer hover:underline"
-        >
-          <SortingIcon sortBy={sortBy} thisId={6} />
-          APR
-        </div>
-      </Th>
-      <Th>
-        <div
-          onClick={() => setSortBy(sortBy === 7 ? -7 : 7)}
-          className="w-full md:flex-center cursor-pointer hover:underline"
-        >
-          <SortingIcon sortBy={sortBy} thisId={7} />
-          Asset %
-        </div>
-      </Th>
-      {/* <Th className="hidden md:table-cell">Include in percentage bar?</Th> */}
-    </Tr>
+    <Thead>
+      <Tr>
+        <Th className="text-sm">
+          <div
+            onClick={() => setSortBy(sortBy === 1 ? -1 : 1)}
+            className="w-full flex flex-row items-center mt-0 cursor-pointer hover:underline"
+          >
+            <SortingIcon sortBy={sortBy} thisId={1} type="alpha" />
+            Institution
+          </div>
+        </Th>
+        <Th>
+          <div
+            onClick={() => setSortBy(sortBy === 2 ? -2 : 2)}
+            className="w-full flex flex-row items-center mt-0 cursor-pointer hover:underline"
+          >
+            <SortingIcon sortBy={sortBy} thisId={2} type="alpha" />
+            Asset
+          </div>
+        </Th>
+        <Th>
+          <div
+            onClick={() => setSortBy(sortBy === 2.5 ? -2.5 : 2.5)}
+            className="w-full flex flex-row items-center mt-0 cursor-pointer hover:underline"
+          >
+            <SortingIcon sortBy={sortBy} thisId={2.5} />#
+          </div>
+        </Th>
+        <Th>
+          <div
+            onClick={() => setSortBy(sortBy === 3 ? -3 : 3)}
+            className="w-full flex flex-row items-center mt-0 cursor-pointer hover:underline"
+          >
+            <SortingIcon sortBy={sortBy} thisId={3} />
+            Price
+          </div>
+        </Th>
+        <Th>
+          <div
+            onClick={() => setSortBy(sortBy === 4 ? -4 : 4)}
+            className="w-full flex flex-row items-center mt-0 cursor-pointer hover:underline"
+          >
+            <SortingIcon sortBy={sortBy} thisId={4} />
+            Holdings
+          </div>
+        </Th>
+        <Th>
+          <div
+            onClick={() => setSortBy(sortBy === 5 ? -5 : 5)}
+            className="w-full flex flex-row items-center mt-0 cursor-pointer hover:underline"
+          >
+            <SortingIcon sortBy={sortBy} thisId={5} />
+            24h%
+          </div>
+        </Th>
+        <Th>
+          <div
+            onClick={() => setSortBy(sortBy === 5 ? -5 : 5)}
+            className="w-full flex flex-row items-center cursor-pointer hover:underline"
+          >
+            <SortingIcon sortBy={sortBy} thisId={5} />
+            7d%
+          </div>
+        </Th>
+        <Th>
+          <div className="w-full flex flex-row items-center mt-0">
+            7d evolution
+          </div>
+        </Th>
+        <Th>
+          <div
+            onClick={() => setSortBy(sortBy === 5 ? -5 : 5)}
+            className="w-full flex flex-row items-center mt-0 cursor-pointer hover:underline"
+          >
+            <SortingIcon sortBy={sortBy} thisId={5} />1 y%
+          </div>
+        </Th>
+        <Th>
+          <div
+            onClick={() => setSortBy(sortBy === 6 ? -6 : 6)}
+            className="w-full flex flex-row items-center mt-0 cursor-pointer hover:underline"
+          >
+            <SortingIcon sortBy={sortBy} thisId={6} />
+            APR
+          </div>
+        </Th>
+        <Th>
+          <div
+            onClick={() => setSortBy(sortBy === 7 ? -7 : 7)}
+            className="w-full flex flex-row items-center mt-0 cursor-pointer hover:underline"
+          >
+            <SortingIcon sortBy={sortBy} thisId={7} />
+            Asset %
+          </div>
+        </Th>
+        {/* <Th className="hidden md:table-cell">Include in percentage bar?</Th> */}
+      </Tr>
+    </Thead>
   )
 }
 export const CryptoRow = ({ i, item }) => {

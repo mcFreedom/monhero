@@ -39,7 +39,6 @@ function init() {
 
 export const StoreProvider = ({
   children,
-  // user = null,
   // databases = null,
   // setDatabases = () => {},
   setShowModal = () => {},
@@ -129,9 +128,13 @@ export const StoreProvider = ({
       loading,
       error,
     }
-  }, [state, user])
+  }, [state])
 
-  return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>
+  return (
+    <StoreContext.Provider value={{ ...value, user }}>
+      {children}
+    </StoreContext.Provider>
+  )
 }
 
 StoreProvider.propTypes = {

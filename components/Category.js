@@ -110,7 +110,7 @@ export const Category = ({ category }) => {
           </ReactTooltip>
         </div>
       </div>
-      {currentInstitutions.length === 0 ? (
+      {currentInstitutions?.length === 0 ? (
         <>
           <div className="flex-center flex-col w-full font-bold border-b">
             Nothing here yet

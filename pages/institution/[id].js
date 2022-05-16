@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react"
 import {
   StoreContext,
+  UserbaseContext,
   helpers,
   useRate,
   constants,
@@ -36,17 +37,18 @@ const Institution = () => {
   const [assets, setAssets] = useState(null)
   const [asset, setAsset] = useState(null)
   const [id, setId] = useState(null)
-
+  const [needsToPay, setNeedsToPay] = useState(true)
   const {
     state: { institutions, assets: allAssets, currency },
     // dispatch,
     dbAction,
   } = useContext(StoreContext)
+  const { goToStripeCheckout, userHasPaid } = useContext(UserbaseContext)
   const { rateFor, loading, error } = useRate()
   const newAssetId = () => {
     const sorted = [...allAssets].sort((a, b) => b.item.id - a.item.id)
     const newId =
-      allAssets && allAssets.length > 0 ? sorted[0]["item"]["id"] + 1 : 1
+      allAssets && allAssets?.length > 0 ? sorted[0]["item"]["id"] + 1 : 1
     // console.log({ sorted, newId })
     return newId
   }
@@ -91,6 +93,10 @@ const Institution = () => {
       setAdd(true)
     }
   }, [allAssets, pageId])
+  useEffect(() => {
+    if (Object.keys(allAssets).length > 5 && !userHasPaid()) setNeedsToPay(true)
+    else setNeedsToPay(false)
+  }, [allAssets, userHasPaid])
 
   const deleteAsset = (dbId) => {
     dbAction("delete", "assets", null, dbId)
@@ -197,8 +203,10 @@ const Institution = () => {
                   Edit {asset.name}
                 </ReactTooltip>
                 <div data-for={`asset${asset.id}`} data-tip>
-                  <Link href={`/asset/${asset.id}`}>
-                    <FaExchangeAlt className="text-gray-400 mr-2 cursor-pointer text-xl ml-2" />
+                  <Link href={`/asset/${asset.id}`} passHref>
+                    <div>
+                      <FaExchangeAlt className="text-gray-400 mr-2 cursor-pointer text-xl ml-2" />
+                    </div>
                   </Link>
                 </div>
                 <ReactTooltip id={`asset${asset.id}`}>Holdings</ReactTooltip>
@@ -208,28 +216,48 @@ const Institution = () => {
         })}
       </div>
 
-      {shown ? (
-        <AssetForm
-          assetProp={asset}
-          add={add}
-          submit={addAsset}
-          deleteIt={deleteAsset}
-          id={id}
-          category={institution?.category}
-        />
-      ) : null}
-      {shown && add ? null : (
-        <button
-          className="btn mb-5 mt-5"
-          onClick={() => {
-            setAsset(newAsset(institution.id))
-            setShown(true)
-            setAdd(true)
-            setId(null)
-          }}
-        >
-          + Add an asset
-        </button>
+      {needsToPay ? (
+        <>
+          <div className="font-bold">
+            You have reached the max number of assets on the free plan.
+          </div>
+          <div
+            onClick={() => goToStripeCheckout(router.asPath)}
+            className="btn cursor-pointer"
+          >
+            Go to subscription payment
+          </div>
+        </>
+      ) : (
+        <>
+          {
+            <div>
+              {shown ? (
+                <AssetForm
+                  assetProp={asset}
+                  add={add}
+                  submit={addAsset}
+                  deleteIt={deleteAsset}
+                  id={id}
+                  category={institution?.category}
+                />
+              ) : null}
+              {shown && add ? null : (
+                <button
+                  className="btn mb-5 mt-5"
+                  onClick={() => {
+                    setAsset(newAsset(institution.id))
+                    setShown(true)
+                    setAdd(true)
+                    setId(null)
+                  }}
+                >
+                  + Add an asset
+                </button>
+              )}
+            </div>
+          }
+        </>
       )}
     </div>
   )

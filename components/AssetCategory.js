@@ -147,16 +147,16 @@ export const AssetCategory = ({ category = "crypto", assets }) => {
             currency={currency}
           />
         </div>
+        {/*
         <div className="w-full md:w-1/2 notice">
-          {/*
            <h3>{"Location"}</h3>
           <LoadedDonut
             // TODO: use combiend amount form each institution (see table)data from
             series={donutAssets.locationSeries}
             labels={donutAssets.locationLabels}
             currency={currency}
-          /> */}
         </div>
+          /> */}
       </div>
     </div>
   )

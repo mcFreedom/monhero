@@ -7,7 +7,7 @@ export const WelcomeModal = ({ shown = false, setIsShown = () => {} }) => {
   const { saveToCookie } = useContext(StoreContext)
 
   const getStarted = () => {
-    saveToCookie("tutorialAccepted", new Date())
+    saveToCookie("termsAccepted", new Date())
     setIsShown(false)
   }
 

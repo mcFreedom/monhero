@@ -31,7 +31,9 @@ export default function Settings() {
         <div className="flex items-center justify-between w-full">
           <div className="cursor-pointer">
             <Link href="/" passHref>
-              <FaHome className="self-start" />
+              <div>
+                <FaHome className="self-start" />
+              </div>
             </Link>
           </div>
           <h5 className="text-2xl font-bold p-4">Settings</h5>

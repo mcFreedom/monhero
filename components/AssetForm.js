@@ -29,7 +29,7 @@ export const AssetForm = ({
     newAsset[prop] = value
     setAsset(newAsset)
     setDisabledSummit(
-      asset.name?.length === 0 || !newAsset.currency || !newAsset.institution,
+      asset?.name?.length === 0 || !newAsset.currency || !newAsset.institution,
     )
   }
   const handleCurrencyChange = (newCurrency, actionMeta) => {

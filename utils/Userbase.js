@@ -1,4 +1,7 @@
 import React, { createContext, useEffect, useState } from "react"
+
+import { loadStripe } from "@stripe/stripe-js/pure"
+
 import userbase from "userbase-js"
 import { constants } from "./constants"
 const { exampleState } = constants
@@ -92,6 +95,7 @@ export const UserbaseProvider = ({ children }) => {
         })
     }
     if (method === "signIn") {
+      console.log({ params })
       userbase
         .signIn(params)
         .then((ur) => {
@@ -112,11 +116,33 @@ export const UserbaseProvider = ({ children }) => {
     }
   }
 
+  const loadStripeWhenNeeded = async () => {
+    const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY)
+    return stripe
+  }
+
   const errorHandling = (err) => {
     setError(err.message)
     console.log({ err })
     setLoading(false)
     return
+  }
+  const userHasPaid = () => {
+    return user.subscriptionStatus === "active"
+  }
+  const goToStripeCheckout = (currentUrl) => {
+    loadStripeWhenNeeded().then(() => {
+      userbase
+        .purchaseSubscription({
+          successUrl: `https://app.secassets.com/${currentUrl}#success`,
+          cancelUrl: `https://app.secassets.com/${currentUrl}#fail`,
+          priceId: process.env.NEXT_PUBLIC_STRIPE_SUBSCRIPTION_ID,
+        })
+        .then(() => {
+          console.log("striped")
+        })
+        .catch((e) => console.error(e))
+    })
   }
 
   const context = {
@@ -125,7 +151,10 @@ export const UserbaseProvider = ({ children }) => {
     userMethod,
     loading,
     error,
+    userHasPaid,
+    goToStripeCheckout,
   }
+
   return (
     <UserbaseContext.Provider value={context}>
       {/* I usually do this for extra flexibility */}
