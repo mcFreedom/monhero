@@ -83,7 +83,7 @@ const PortfolioCategory = () => {
 
   return (
     <div className="flex-center flex-col min-h-screen pt-20 md:mx-auto md:px-10">
-      <Link href="/portfolio">
+      <Link href="/portfolio" passHref>
         <div className="my-10 cursor-pointer">
           <FaArrowLeft />
         </div>

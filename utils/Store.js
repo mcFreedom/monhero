@@ -58,6 +58,7 @@ export const StoreProvider = ({
 
   const dispatchFromUserbase = () => {
     setLoading(true)
+    console.log({ databases })
     databases.map((db) => {
       userbase
         .openDatabase({
@@ -88,6 +89,7 @@ export const StoreProvider = ({
 
   const dbAction = (action, databaseName, item, itemId) => {
     if (!user) {
+      console.log({ message: "No user", user })
       setError("You need to be logged in to do this.")
       setShowModal(true)
       return
@@ -114,7 +116,9 @@ export const StoreProvider = ({
   }
 
   useEffect(() => {
-    if (user && databases) dispatchFromUserbase()
+    if (user && databases) {
+      dispatchFromUserbase()
+    }
     if (!user) resetState()
   }, [user, databases])
 
@@ -128,7 +132,7 @@ export const StoreProvider = ({
       loading,
       error,
     }
-  }, [state])
+  }, [state, user])
 
   return (
     <StoreContext.Provider value={{ ...value, user }}>

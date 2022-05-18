@@ -5,7 +5,10 @@ export const Loading = ({ fullPage = false }) => {
     <div className={`flex-center flex-col ${fullPage ? "h-screen" : "h-full"}`}>
       <FaSpinner className="text-2xl cursor-pointer my-5 fa-spin" />
       {fullPage && (
-        <div>Loading. Decrypting. Keeping you safe from prying eyes 👀</div>
+        <>
+          <div>Loading. Decrypting. Keeping you safe from prying eyes 👀</div>
+          <div>Please refresh the page if nothing happens after a while</div>
+        </>
       )}
     </div>
   )

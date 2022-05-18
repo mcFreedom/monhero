@@ -54,13 +54,15 @@ export const Category = ({ category }) => {
           {institution.name}
           {institution.href && (
             <>
-              <Link href={institution.href} target="_blank">
-                <FaArrowRight
-                  className="ml-2 cursor-pointer rounded text-lg"
-                  style={institutionStyle(institution, true)}
-                  data-for={`link${institution.name}`}
-                  data-tip
-                />
+              <Link href={institution.href} target="_blank" passHref>
+                <div>
+                  <FaArrowRight
+                    className="ml-2 cursor-pointer rounded text-lg"
+                    style={institutionStyle(institution, true)}
+                    data-for={`link${institution.name}`}
+                    data-tip
+                  />
+                </div>
               </Link>
               <ReactTooltip id={`link${institution.name}`}>
                 <span>{`Go to ${institution.href}`}</span>

@@ -83,7 +83,6 @@ export const UserbaseProvider = ({ children }) => {
       userbase
         .signOut()
         .then(() => {
-          setUser(null)
           setLoading(false)
           setDatabases(null)
         })
@@ -95,7 +94,6 @@ export const UserbaseProvider = ({ children }) => {
         })
     }
     if (method === "signIn") {
-      console.log({ params })
       userbase
         .signIn(params)
         .then((ur) => {
@@ -134,8 +132,8 @@ export const UserbaseProvider = ({ children }) => {
     loadStripeWhenNeeded().then(() => {
       userbase
         .purchaseSubscription({
-          successUrl: `https://app.secassets.com/${currentUrl}#success`,
-          cancelUrl: `https://app.secassets.com/${currentUrl}#fail`,
+          successUrl: `${process.env.NEXT_PUBLIC_BACKEND_URL}/${currentUrl}#success`,
+          cancelUrl: `${process.env.NEXT_PUBLIC_BACKEND_URL}/${currentUrl}#fail`,
           priceId: process.env.NEXT_PUBLIC_STRIPE_SUBSCRIPTION_ID,
         })
         .then(() => {

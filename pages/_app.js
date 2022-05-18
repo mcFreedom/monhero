@@ -6,9 +6,8 @@ import {
   RateProvider,
   StoreContext,
   UserbaseProvider,
-
 } from "../utils"
-import {  assetMethods } from "../utils"
+import { assetMethods } from "../utils"
 import { Navbar, HelpButton } from "../components"
 import { WelcomeModal } from "../components/portal"
 import { UserModal } from "../components/portal/UserModal"
@@ -17,7 +16,6 @@ const { getAssetCurrencies } = assetMethods
 import Head from "next/head"
 import { useRouter } from "next/router"
 import LogIn from "./log-in"
-
 
 function MyApp({ Component, pageProps }) {
   const [showModal, setShowModal] = useState(true)

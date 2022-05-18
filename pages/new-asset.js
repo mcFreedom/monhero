@@ -38,12 +38,12 @@ const NewAsset = () => {
           })}
       </div>
 
-      <info>
+      <div className="info">
         Looking for other assets? You can enable more categories in the
         <Link href="/settings" passHref>
           <a className="a white pl-1 font-bold">settings</a>
         </Link>
-      </info>
+      </div>
     </div>
   )
 }

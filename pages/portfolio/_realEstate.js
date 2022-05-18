@@ -47,8 +47,10 @@ const PortfolioRealEstate = () => {
 
   return (
     <div className="flex-center flex-col min-h-screen mt-10 md:mx-auto md:px-10">
-      <Link href="/portfolio">
-        <FaArrowLeft className="cursor-pointer my-10" />
+      <Link href="/portfolio" passHref>
+        <div>
+          <FaArrowLeft className="cursor-pointer my-10" />
+        </div>
       </Link>
       <Head>
         <title>{CATEGORIES[category] || "Portfolio"}</title>

@@ -62,6 +62,7 @@ const Category = () => {
     resetState()
   }
   const addInstitution = (institution, dbId = null) => {
+    console.log({ dbId, institution })
     dbId
       ? dbAction("update", "institutions", institution, dbId)
       : dbAction("add", "institutions", institution)
@@ -94,7 +95,9 @@ const Category = () => {
         className="text-gray-400 mb-5"
         onClick={() => setShowInfo(!showInfo)}
       />
-      {showInfo && <info>{institutionLanguageInfo(category)}</info>}
+      {showInfo && (
+        <div className="info">{institutionLanguageInfo(category)}</div>
+      )}
       <div className="my-5">
         {categoryInstitution(institutions).map((currentInst, i) => {
           const { item: institution, itemId } = currentInst
@@ -135,12 +138,14 @@ const Category = () => {
                 <ReactTooltip id={`api${i}`}>
                   API<span className="notice -left-2">Coming soon</span>
                 </ReactTooltip> */}
-                <Link href={`/institution/${institution.id}`}>
-                  <FaArrowRight
-                    className="text-gray-400 mr-2 cursor-pointer text-xl ml-2"
-                    data-for={`assets${i}`}
-                    data-tip
-                  />
+                <Link href={`/institution/${institution.id}`} passHref>
+                  <div>
+                    <FaArrowRight
+                      className="text-gray-400 mr-2 cursor-pointer text-xl ml-2"
+                      data-for={`assets${i}`}
+                      data-tip
+                    />
+                  </div>
                 </Link>
                 <ReactTooltip
                   id={`assets${i}`}

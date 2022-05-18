@@ -1,10 +1,19 @@
 import { useContext, useState, useEffect, useCallback } from "react"
 import { UserbaseContext } from "../utils"
 import Head from "next/head"
-import { FaExclamationTriangle, FaTimes, FaSpinner } from "react-icons/fa"
+import {
+  FaExclamationTriangle,
+  FaTimes,
+  FaSpinner,
+  FaEye,
+} from "react-icons/fa"
 import { useRouter } from "next/router"
 
 export default function LogIn({ signUpProp = false }) {
+  return <LogInComponent signUpProp={signUpProp} />
+}
+
+export function LogInComponent({ signUpProp = false }) {
   const router = useRouter()
   const [signUp, setSignUp] = useState(signUpProp)
 
@@ -13,6 +22,7 @@ export default function LogIn({ signUpProp = false }) {
   // const [loading, setLoading] = useState(false)
   const [explainerAccepted, setExplainerAccepted] = useState(false)
   const [passwordStrong, setPasswordStrong] = useState(2)
+  const [visiblePassword, setVisiblePassword] = useState(false)
   const strongRegex = new RegExp(
     "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})",
   )
@@ -86,16 +96,20 @@ export default function LogIn({ signUpProp = false }) {
   }
 
   return (
-    <div className="flex-center h-screen mt-10">
+    <div className="flex-center mt-10">
       <Head>
         <title>
           {signUp ? "Sign Up - Secret Assets" : "Log In - Secret Assets"}
         </title>
       </Head>
       {user ? (
-        <div>
-          Signed in as {user.username}.{" "}
-          <button onClick={handleLogout}>Log out</button>
+        <div className="flex flex-col">
+          <span>
+            Signed in as <strong>{user.username}. </strong>
+          </span>
+          <button onClick={handleLogout} className="btn danger">
+            Log out
+          </button>
         </div>
       ) : (
         <div>
@@ -172,10 +186,16 @@ export default function LogIn({ signUpProp = false }) {
                   </div>
 
                   <div className="w-100 flex justify-end items-center my-2 relative">
-                    <label className="pr-2 font-bold">Password</label>
+                    <div className="flex flex-col items-end">
+                      <label className="pr-2 font-bold">Password</label>
+                      <FaEye
+                        onClick={() => setVisiblePassword(!visiblePassword)}
+                        className="text-gray-400 cursor-pointer mr-2"
+                      />
+                    </div>
                     <input
                       className="border w-2/3 p-5 rounded"
-                      type="password"
+                      type={visiblePassword ? "text" : "password"}
                       name="password"
                       value={loginForm?.password}
                       onChange={handleLoginInputChange}
@@ -184,7 +204,7 @@ export default function LogIn({ signUpProp = false }) {
                     />
 
                     <FaTimes
-                      className={`right-2 absolute text-gray-400 ${
+                      className={`right-2 absolute text-gray-400 cursor-pointer ${
                         loginForm.password?.length > 0 ? "" : "hidden"
                       }`}
                       onClick={() => resetPassword()}
@@ -192,30 +212,41 @@ export default function LogIn({ signUpProp = false }) {
                   </div>
                   {signUp ? (
                     signUp &&
+                    loginForm?.password?.length > 0 &&
                     passwordStrong !== 0 && (
                       <>
-                        <div className={`p-1 rounded ${pwBgColor()}`}>
-                          This password is too weak. <br />
-                          Lowercase, uppercase, symbol and number needed. <br />
-                        </div>
-                        )
-                        <div className="border-4 bg-yellow-400 p-4 m-1">
-                          Please use a password manager to save this. <br />
-                          We cannot recover your password if you lose it.
-                        </div>
-                        <div className="text-xs my-5 mx-1">
-                          By clicking the button, you also accept our{" "}
-                          <a
-                            className="a"
-                            href="www.secassets.com/terms"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            terms and conditions
-                          </a>
+                        <div
+                          className={`rounded ${pwBgColor()} border-4 border-red-400 p-4 m-1`}
+                        >
+                          <p>This password is too weak.</p>
+                          <p className="block">
+                            Lowercase, uppercase, symbol and number needed.
+                          </p>
+                          <p className="block">8 characters minimum</p>
                         </div>
                       </>
                     )
+                  ) : (
+                    <></>
+                  )}
+                  {signUp ? (
+                    <>
+                      <div className="border-4 bg-yellow-400 p-4 m-1">
+                        Please use a password manager to save this. <br />
+                        We cannot recover your password if you lose it.
+                      </div>
+                      <div className="text-xs my-5 mx-1">
+                        By clicking the button, you also accept our{" "}
+                        <a
+                          className="a"
+                          href={`${process.env.NEXT_PUBLIC_MARKETING_URL}/terms`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          terms and conditions
+                        </a>
+                      </div>
+                    </>
                   ) : (
                     <></>
                   )}

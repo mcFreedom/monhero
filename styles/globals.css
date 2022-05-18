@@ -95,7 +95,7 @@ container {
 .notice, notice {
   @apply text-sm text-red-400 -rotate-12 transform absolute p-1 left-1/2 font-bold w-32;
 }
-info {
+.info {
   @apply bg-blue-500 p-10 text-white rounded;
 }
 
@@ -135,6 +135,9 @@ body h3 {
 .btn.danger{
   @apply bg-red-500;
 }
+.btn.danger:hover{
+  @apply bg-red-400;
+}
 .btn.grey{
   @apply bg-gray-600;
 }
@@ -153,8 +156,6 @@ body h3 {
 .btn.disabled {
   @apply cursor-not-allowed bg-gray-500;
 }
-
-
 
 
 /* transition */
