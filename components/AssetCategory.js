@@ -66,7 +66,7 @@ export const AssetCategory = ({ category = "crypto", assets }) => {
       percentageChangeFor,
     )
     if (assetsFormatted !== a) setAssetsFormatted(a)
-  }, [assets, category])
+  }, [assets, category, tableStatsMaker])
 
   useEffect(() => {
     const theseAssets = assetsForCategory(assets, institutions, category)

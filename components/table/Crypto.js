@@ -133,7 +133,7 @@ export const CryptoRow = ({ i, item }) => {
 
   useEffect(() => {
     const x = institutions.find((i) => i.item.id === item.institution)
-    setInstitution(x.item)
+    setInstitution(x?.item)
   }, [i])
 
   return (

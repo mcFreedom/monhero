@@ -33,8 +33,14 @@ export const AssetPage = ({ categoryProp, liabilities = false }) => {
   useEffect(() => {
     if (assets && assets.length == 0) router.push("/new-asset")
     const a = liabilities ? assets.filter((a) => a.item.liability) : assets
+    if (!categoryProp) {
+      const firstcat = institutions.find(
+        (i) => i.item.id === a[0]?.item?.institution,
+      )
+      if (firstcat) setCategory(firstcat?.item?.category)
+    }
     setTheseAssets(a)
-  }, [assets])
+  }, [assets, categoryProp])
 
   useEffect(() => {
     if (!theseAssets) return
@@ -45,7 +51,7 @@ export const AssetPage = ({ categoryProp, liabilities = false }) => {
       totalForAssets,
     )
     setAssetsFormatted(a)
-  }, [theseAssets])
+  }, [theseAssets, categories])
 
   return (
     <>
@@ -83,10 +89,7 @@ export const AssetPage = ({ categoryProp, liabilities = false }) => {
           </Link>
         </div>
       ) : (
-        <AssetCategory
-          category={category || categories[0]?.name}
-          assets={theseAssets}
-        />
+        <AssetCategory category={category} assets={theseAssets} />
       )}
     </>
   )
