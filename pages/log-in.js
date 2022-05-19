@@ -77,7 +77,6 @@ export function LogInComponent({ signUpProp = false }) {
 
   const handleLoginSubmit = (event) => {
     event?.preventDefault()
-    console.log({ u: loginForm.username, p: loginForm.password })
     if (loginForm.username && loginForm.password)
       userMethod("signIn", {
         username: loginForm.username,

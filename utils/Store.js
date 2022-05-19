@@ -58,7 +58,6 @@ export const StoreProvider = ({
 
   const dispatchFromUserbase = () => {
     setLoading(true)
-    console.log({ databases })
     databases.map((db) => {
       userbase
         .openDatabase({
