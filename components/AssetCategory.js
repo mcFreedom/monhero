@@ -115,7 +115,7 @@ export const AssetCategory = ({ category = "crypto", assets }) => {
       ) : (
         <></>
       )}
-      <div className="w-full  xl:w-4/5 xl:mx-20">
+      <div className="w-full  xl:w-4/5 overflow-x-auto">
         {/* <Category category={thisCategory?.item} id={thisCategory?.itemId} /> */}
         {thisCategory ? (
           table ? (
