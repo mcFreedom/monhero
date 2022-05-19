@@ -84,7 +84,7 @@ const PortfolioRealEstate = () => {
                       key={i}
                       className="flex w-full justify-between rounded px-4"
                     >
-                      <Link href={`/asset/${asset.id}`}>
+                      <Link href={`/asset/${asset.id}`} passHref>
                         <div className="flex items-center cursor-pointer">
                           <a className="hover:underline">{asset.name}</a>
                           <FaLink className="md:hidden pl-1"></FaLink>
@@ -110,7 +110,7 @@ const PortfolioRealEstate = () => {
             </div>
           )
         })}
-        <Link href="">
+        <Link href="" passHref>
           <div
             className="border m-5 cursor-pointer w-full flex-center p-10 hover:underline"
             data-for={"new-institution"}

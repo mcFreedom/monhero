@@ -155,7 +155,7 @@ export const Row = ({
 
       <td className={lastColumn} id="actions">
         <div className="flex-center justify-end">
-          <Link title="Edit holdings" href={`/asset/${asset.id}`}>
+          <Link title="Edit holdings" href={`/asset/${asset.id}`} passHref>
             <div
               className="cursor-pointer"
               data-for={`asset/${asset.id}`}

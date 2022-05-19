@@ -77,11 +77,14 @@ export const RealEstateRow = ({
       <td className={tdPaddingRight}>
         <div className="flex-center">
           <Link
+            passHref
             title="Manage transactions"
             href={`/asset/${asset.id}`}
             onClick={() => {}}
           >
-            <FaExchangeAlt className="text-gray-500 mr-2" />
+            <div>
+              <FaExchangeAlt className="text-gray-500 mr-2" />
+            </div>
           </Link>
         </div>
       </td>

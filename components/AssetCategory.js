@@ -125,7 +125,7 @@ export const AssetCategory = ({ category = "crypto", assets }) => {
           )
         ) : null}
       </div>
-      <Link href={`/category/${category}`}>
+      <Link href={`/category/${category}`} passHref>
         <div
           className="border m-5 cursor-pointer flex-center p-10 hover:underline rounded"
           data-for={"new-institution"}

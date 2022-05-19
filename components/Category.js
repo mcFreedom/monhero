@@ -70,13 +70,15 @@ export const Category = ({ category }) => {
             </>
           )}
           <>
-            <Link href={`/institution/${institution.id}`}>
-              <FaPlus
-                className="ml-2 cursor-pointer rounded text-lg p-1"
-                style={institutionStyle(institution, true)}
-                data-for="add-asset"
-                data-tip
-              />
+            <Link href={`/institution/${institution.id}`} passHref>
+              <div>
+                <FaPlus
+                  className="ml-2 cursor-pointer rounded text-lg p-1"
+                  style={institutionStyle(institution, true)}
+                  data-for="add-asset"
+                  data-tip
+                />
+              </div>
             </Link>
             <ReactTooltip id="add-asset">
               <span>Add an asset</span>
@@ -98,7 +100,11 @@ export const Category = ({ category }) => {
       <div className="flex justify-between items-center w-full">
         <h2>{constants.CATEGORIES[category?.name]}</h2>
         <div className="flex items-center">
-          <Link title="Manage Category" href={`/category/${category?.name}`}>
+          <Link
+            title="Manage Category"
+            href={`/category/${category?.name}`}
+            passHref
+          >
             <div
               className="cursor-pointer"
               data-for={`editCat${category}`}
@@ -116,7 +122,7 @@ export const Category = ({ category }) => {
         <>
           <div className="flex-center flex-col w-full font-bold border-b">
             Nothing here yet
-            <Link href={`/category/${category?.name}`}>
+            <Link href={`/category/${category?.name}`} passHref>
               <button className="btn mb-2">+ Add an institution</button>
             </Link>
           </div>

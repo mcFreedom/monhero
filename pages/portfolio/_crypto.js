@@ -108,7 +108,7 @@ const PortfolioCrypto = () => {
             </div>
           )
         })}
-        <Link href="">
+        <Link href="" passHref>
           <div
             className="border m-5 cursor-pointer w-full flex-center p-10 hover:underline"
             data-for={"new-institution"}

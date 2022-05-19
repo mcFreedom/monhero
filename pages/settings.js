@@ -81,7 +81,7 @@ export default function Settings() {
         <div className="flex-col flex-center p-4">
           <h5 className="text-xl font-bold p-4">Inheritance Planning</h5>
           <div className="card cursor-not-allowed">
-            <Link href="#" disabled>
+            <Link href="#" disabled passHref>
               <div>Inheritance simulator</div>
             </Link>
             <div className="notice mt-4">Coming soon</div>
@@ -91,7 +91,7 @@ export default function Settings() {
         <div className="flex-col flex-center p-4">
           <h5 className="text-xl font-bold p-4">Tab title</h5>
           <div className="card cursor-not-allowed">
-            <Link href="#" disabled>
+            <Link href="#" disabled passHref>
               <div>Pick the data to display in the tab bar:</div>
             </Link>
             <div className="notice mt-4">Coming soon</div>

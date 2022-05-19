@@ -74,7 +74,7 @@ export const SimpleView = ({ category }) => {
                 <div className="text-center font-bold">
                   {totalForAssets(theseAssets)}
                 </div>
-                <Link href={`/category/${category}`}>
+                <Link href={`/category/${category}`} passHref>
                   <div
                     className="flex w-full justify-center my-5 cursor-pointer p-5 hover:bg-blend-darken"
                     data-for={"new-asset"}

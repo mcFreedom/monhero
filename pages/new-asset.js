@@ -25,7 +25,7 @@ const NewAsset = () => {
           .map((cat, index) => {
             const categoryName = cat.item.name
             return (
-              <Link key={index} href={`/category/${categoryName}`}>
+              <Link key={index} href={`/category/${categoryName}`} passHref>
                 <card className="w-2/5 bg-blue-100 m-4 p-10 link flex items-center">
                   <IconForCategory
                     category={categoryName}

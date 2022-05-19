@@ -68,11 +68,15 @@ export const BanksRow = ({
         </div>
       </td>
       <td className={tdPaddingRight}>
-        <Link title="Manage transactions" href="#" onClick={() => {}}>
-          <FaExchangeAlt className="text-gray-500 mr-2" />
+        <Link title="Manage transactions" href="#" onClick={() => {}} passHref>
+          <div>
+            <FaExchangeAlt className="text-gray-500 mr-2" />
+          </div>
         </Link>
-        <Link title="Edit" href="#" onClick={() => {}}>
-          <FaCog className="text-gray-500" />
+        <Link title="Edit" href="#" onClick={() => {}} passHref>
+          <div>
+            <FaCog className="text-gray-500" />
+          </div>
         </Link>
       </td>
     </tr>
