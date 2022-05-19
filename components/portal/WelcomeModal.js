@@ -49,10 +49,10 @@ export const WelcomeModal = () => {
             </div>
             <div className="py-4">
               If you spot any bugs, please let us know at
-              <href mailto="hello@secassets.com" className="a">
+              <a href="mailto:hello@secassets.com" className="a">
                 {" "}
                 hello@secassets.com
-              </href>
+              </a>
             </div>
             <button onClick={() => getStarted()} className="btn mb-2">
               Let&apos;s get started

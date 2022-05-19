@@ -3,11 +3,11 @@ module.exports = {
     return [
       {
         source: "/demo/:slug*",
-        destination: "/:slug*",
+        destination: "/assets/:slug*",
       },
       {
         source: "/demo",
-        destination: "/",
+        destination: "/assets",
       },
     ]
   },

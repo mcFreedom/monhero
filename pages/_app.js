@@ -36,7 +36,7 @@ function MyApp({ Component, pageProps }) {
 
 export default MyApp
 
-const ChildApp = ({ showModal, setShowModal, children }) => {
+const ChildApp = ({ showModal = false, setShowModal = () => {}, children }) => {
   const router = useRouter()
   const { user } = useContext(StoreContext)
   const [userValid, setUserValid] = useState(false)
@@ -66,9 +66,7 @@ const ChildApp = ({ showModal, setShowModal, children }) => {
         />
       </Head>
       <Rate>
-        <div>
-          <Navbar setShowModal={setShowModal} warning={!userValid} />
-        </div>
+        <Navbar setShowModal={setShowModal} warning={!userValid} />
         <div className="min-h-screen">
           {children}
           <UserModal

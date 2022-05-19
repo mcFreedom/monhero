@@ -12,104 +12,104 @@ import { CurrencyPicker, WarningBar } from "../components"
 import { RateContext } from "../utils"
 import moment from "moment"
 
-export const Navbar = forwardRef(
-  ({ styleOnly, warning = false, setShowModal = () => {} }, ref) => {
-    const { rates, error, getData } = useContext(RateContext)
-    const [timeAgo, setTimeAgo] = useState("A while back")
-    const [mobileMenu, setMobileMenu] = useState(false)
-    const router = useRouter()
-    const path = router.pathname
+export const Navbar = ({
+  styleOnly = false,
+  warning = false,
+  setShowModal = () => {},
+}) => {
+  const { rates, error, getData } = useContext(RateContext)
+  const [timeAgo, setTimeAgo] = useState("A while back")
+  const [mobileMenu, setMobileMenu] = useState(false)
+  const router = useRouter()
+  const path = router.pathname
 
-    useEffect(() => {
-      let interval = null
-      interval = setInterval(() => {
-        if (rates && rates["lastUpdated"]) {
-          setTimeAgo(moment(rates["lastUpdated"]).fromNow())
-        } else {
-          setTimeAgo("A while back")
-        }
-      }, 5000)
-      return () => clearInterval(interval)
-    }, [rates])
+  useEffect(() => {
+    let interval = null
+    interval = setInterval(() => {
+      if (rates && rates["lastUpdated"]) {
+        setTimeAgo(moment(rates["lastUpdated"]).fromNow())
+      } else {
+        setTimeAgo("A while back")
+      }
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [rates])
 
-    if (styleOnly) {
-      return (
-        <div className="w-screen border-b flex items-center justify-between fixed top-0 bg-white md:text-lg z-10">
-          <div className="flex items-center">
-            <Link href={"/assets"} passHref>
-              <div
-                className={
-                  "text-2xl px-2 font-extrabold cursor-pointer relative flex items-center"
-                }
-              >
-                Secret Assets
-                <div className="bg-red-500 text-white text-xs p-1 rounded rotate-12 mt-1 ml-1">
-                  beta
-                </div>
-              </div>
-            </Link>
-          </div>
-        </div>
-      )
-    }
-
+  console.log(styleOnly === true)
+  if (styleOnly === true) {
     return (
-      <div className="flex flex-col top-0">
-        <div
-          ref={ref}
-          className="bw-screen border-b flex items-center justify-between bg-white  md:text-lg z-10 w-screen"
-        >
-          <div className="flex items-center">
-            <Link href={"/assets"} passHref>
-              <div
-                className={
-                  "text-2xl px-2 font-extrabold cursor-pointer relative flex items-center"
-                }
-              >
-                Secret Assets
-                <div className="bg-red-500 text-white text-xs p-1 rounded rotate-12 mt-1 ml-1">
-                  beta
-                </div>
+      <div className="w-screen border-b flex items-center justify-between fixed top-0 bg-white md:text-lg z-10">
+        <div className="flex items-center">
+          <Link href={"/assets"} passHref>
+            <div
+              className={
+                "text-2xl px-2 font-extrabold cursor-pointer relative flex items-center"
+              }
+            >
+              Secret Assets
+              <div className="bg-red-500 text-white text-xs p-1 rounded rotate-12 mt-1 ml-1">
+                beta
               </div>
-            </Link>
-            <div className="hidden md:block">
-              <Navigation />
             </div>
-          </div>
-          <div className="md:hidden pr-5">
-            {mobileMenu ? (
-              <FaTimes onClick={() => setMobileMenu(false)} />
-            ) : (
-              <FaBars onClick={() => setMobileMenu(true)} />
-            )}
-            {mobileMenu ? (
-              <div className="flex justify-center items-end flex-col absolute mt-2   ton  bg-white right-0 w-screen px-5  border-b">
-                <Navigation path={path} />
-                <MenuOptions
-                  error={error}
-                  showModal={setShowModal}
-                  timeAgo={timeAgo}
-                  fetchData={getData}
-                />{" "}
-              </div>
-            ) : (
-              <></>
-            )}
-          </div>
-          <div className="right-end px-2 hidden md:flex md:justify-end md:items-center">
-            <MenuOptions
-              error={error}
-              showModal={setShowModal}
-              timeAgo={timeAgo}
-              getData={getData}
-            />
-          </div>
+          </Link>
         </div>
-        {warning ? <WarningBar setShowModal={setShowModal} /> : <></>}
       </div>
     )
-  },
-)
+  }
+
+  return (
+    <div className="flex flex-col top-0">
+      <div className="bw-screen border-b flex items-center justify-between bg-white  md:text-lg z-10 w-screen">
+        <div className="flex items-center">
+          <Link href={"/assets"} passHref>
+            <div
+              className={
+                "text-2xl px-2 font-extrabold cursor-pointer relative flex items-center"
+              }
+            >
+              Secret Assets
+              <div className="bg-red-500 text-white text-xs p-1 rounded rotate-12 mt-1 ml-1">
+                beta
+              </div>
+            </div>
+          </Link>
+          <div className="hidden md:block">
+            <Navigation />
+          </div>
+        </div>
+        <div className="md:hidden pr-5">
+          {mobileMenu ? (
+            <FaTimes onClick={() => setMobileMenu(false)} />
+          ) : (
+            <FaBars onClick={() => setMobileMenu(true)} />
+          )}
+          {mobileMenu ? (
+            <div className="flex justify-center items-end flex-col absolute mt-2   ton  bg-white right-0 w-screen px-5  border-b">
+              <Navigation path={path} />
+              <MenuOptions
+                error={error}
+                showModal={setShowModal}
+                timeAgo={timeAgo}
+                fetchData={getData}
+              />{" "}
+            </div>
+          ) : (
+            <></>
+          )}
+        </div>
+        <div className="right-end px-2 hidden md:flex md:justify-end md:items-center">
+          <MenuOptions
+            error={error}
+            showModal={setShowModal}
+            timeAgo={timeAgo}
+            getData={getData}
+          />
+        </div>
+      </div>
+      {warning ? <WarningBar setShowModal={setShowModal} /> : <></>}
+    </div>
+  )
+}
 
 const MenuOptions = ({ error, timeAgo, showModal, getData }) => {
   return (
@@ -149,7 +149,7 @@ const Navigation = ({ path }) => {
   const { loading } = useRate()
 
   return (
-    <div className="flex  flex-col md:flex-row md:items-center text-right md:row divide-x-1/2">
+    <div className="flex flex-col md:flex-row md:items-center text-right md:row divide-x-1/2">
       <Link href={"/assets"} passHref>
         <div
           className={`${
@@ -228,9 +228,3 @@ const Navigation = ({ path }) => {
     </div>
   )
 }
-
-Navbar.propTypes = {
-  showModal: PropTypes.func,
-}
-
-Navbar.displayName = "Navbar"

@@ -29,7 +29,7 @@ export const RateProvider = ({ children, currency = "usd", to = [] }) => {
   const [rates, setRates] = useState({})
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
-  const [seconds, setSeconds] = useState(0)
+  // const [seconds, setSeconds] = useState(0)
 
   const toCurrencies = to.join(",")
   const getData = useCallback(async () => {
@@ -45,7 +45,7 @@ export const RateProvider = ({ children, currency = "usd", to = [] }) => {
         })
         .catch((error) => {
           console.error("Error fetching data: ", error)
-          setError(error.message)
+          setError(error?.message)
           setLoading(false)
         })
         .finally(() => {
