@@ -1,14 +1,15 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { StoreContext } from "../../utils"
 
 import { FaExclamationTriangle } from "react-icons/fa"
 
-export const WelcomeModal = ({ shown = false, setIsShown = () => {} }) => {
+export const WelcomeModal = () => {
   const { saveToCookie } = useContext(StoreContext)
+  const [shown, setShown] = useState(true)
 
   const getStarted = () => {
     saveToCookie("termsAccepted", new Date())
-    setIsShown(false)
+    setShown(false)
   }
 
   return shown ? (

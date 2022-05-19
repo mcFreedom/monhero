@@ -75,12 +75,7 @@ const ChildApp = ({ showModal, setShowModal, children }) => {
             shown={demoMode ? false : showModal}
             setIsShown={setShowModal}
           />
-          {!termsAccepted && (
-            <WelcomeModal
-              shown={!termsAccepted}
-              setIsShown={setTermsAccepted}
-            />
-          )}
+          {!termsAccepted && <WelcomeModal />}
           <HelpButton />
         </div>
       </Rate>
