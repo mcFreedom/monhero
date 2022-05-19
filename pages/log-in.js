@@ -7,14 +7,12 @@ import {
   FaSpinner,
   FaEye,
 } from "react-icons/fa"
-import { useRouter } from "next/router"
 
 export default function LogIn({ signUpProp = false }) {
   return <LogInComponent signUpProp={signUpProp} />
 }
 
 export function LogInComponent({ signUpProp = false }) {
-  const router = useRouter()
   const [signUp, setSignUp] = useState(signUpProp)
 
   const [loginForm, setLoginForm] = useState({ username: "", password: "" })
@@ -67,12 +65,6 @@ export function LogInComponent({ signUpProp = false }) {
 
   const handleLogout = () => {
     userMethod("signOut")
-      .then(() => {
-        router.push(process.env.NEXT_PUBLIC_MARKETING_URL)
-      })
-      .catch((err) => {
-        alert(err)
-      })
   }
 
   const handleLoginSubmit = (event) => {

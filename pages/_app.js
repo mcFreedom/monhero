@@ -41,6 +41,7 @@ const ChildApp = ({ showModal = false, setShowModal = () => {}, children }) => {
   const { user } = useContext(StoreContext)
   const [userValid, setUserValid] = useState(false)
   const [termsAccepted, setTermsAccepted] = useState(false)
+  const [demoMode, setDemoMode] = useState(false)
   useEffect(() => {
     const accepted = window.localStorage.getItem("termsAccepted")
     setTermsAccepted(JSON.parse(accepted) ? true : false)
@@ -49,8 +50,12 @@ const ChildApp = ({ showModal = false, setShowModal = () => {}, children }) => {
     setUserValid(user ? true : false)
   }, [user])
 
-  const demoMode = router.asPath === "/demo"
+  useEffect(() => {
+    setDemoMode(router.asPath === "/demo")
+  }, [router])
+
   const signUp = router.asPath === "/sign-up"
+
   return !demoMode && !user ? (
     <>
       <Navbar styleOnly />

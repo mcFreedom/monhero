@@ -1,6 +1,5 @@
-import { forwardRef, useContext, useState, useEffect } from "react"
+import { useContext, useState, useEffect } from "react"
 import Link from "next/link"
-import PropTypes from "prop-types"
 import { useRouter } from "next/router"
 import { FaBars, FaCog, FaPlus, FaTimes, FaUser } from "react-icons/fa"
 
@@ -35,7 +34,6 @@ export const Navbar = ({
     return () => clearInterval(interval)
   }, [rates])
 
-  console.log(styleOnly === true)
   if (styleOnly === true) {
     return (
       <div className="w-screen border-b flex items-center justify-between fixed top-0 bg-white md:text-lg z-10">

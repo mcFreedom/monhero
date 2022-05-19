@@ -5,6 +5,7 @@ import { loadStripe } from "@stripe/stripe-js/pure"
 import userbase from "userbase-js"
 import { constants } from "./constants"
 const { exampleState } = constants
+import { useRouter } from "next/router"
 
 const appId = process.env.NEXT_PUBLIC_USERBASE_APP_ID
 
@@ -20,6 +21,7 @@ export const UserbaseProvider = ({ children }) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [databases, setDatabases] = useState(null)
+  const router = useRouter()
 
   useEffect(() => {
     userbase
@@ -85,6 +87,7 @@ export const UserbaseProvider = ({ children }) => {
         .then(() => {
           setLoading(false)
           setDatabases(null)
+          router.push(process.env.NEXT_PUBLIC_MARKETING_URL)
         })
         .catch((err) => {
           setUser(null)
