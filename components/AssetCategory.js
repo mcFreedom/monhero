@@ -10,33 +10,36 @@ import {
 import { FaEye, FaEyeSlash } from "react-icons/fa"
 import { useVisibility } from "../utils/hooks"
 import { SimpleView } from "./"
-import { Loading } from "./Loading"
-import Loadable from "react-loadable"
+// import { Loading } from "./Loading"
+// import Loadable from "react-loadable"
 import { TableManager } from "./table"
 import Head from "next/head"
 import { FaPlus } from "react-icons/fa"
 import Link from "next/link"
 import ReactTooltip from "react-tooltip"
 
-const { assetsForCategory, tableStatsMaker, portfolioDonutStatsMaker } =
-  assetMethods
+const {
+  assetsForCategory,
+  tableStatsMaker,
+  // portfolioDonutStatsMaker
+} = assetMethods
 const { newInstitutionLanguage } = helpers
 
 const { CATEGORIES } = constants
 
-const LoadedDonut = Loadable({
-  loader: () => import("./charts/percentages"),
-  loading: Loading,
-})
+// const LoadedDonut = Loadable({
+//   loader: () => import("./charts/percentages"),
+//   loading: Loading,
+// })
 export const AssetCategory = ({ category = "crypto", assets }) => {
   const { totalDisplayed, toggleTotal } = useVisibility()
   const [thisCategory, setThisCategory] = useState(null)
   const [total, setTotal] = useState("")
   const [table, setTable] = useState(true)
-  const [donutAssets, setDonutAssets] = useState({})
+  // const [, setDonutAssets] = useState({})
   const [assetsFormatted, setAssetsFormatted] = useState([])
   const { rateFor, percentageChangeFor } = useRate()
-  const numberOfTopAssets = 5
+  // const numberOfTopAssets = 5
 
   const {
     state: { categories, institutions, currency },
@@ -68,17 +71,17 @@ export const AssetCategory = ({ category = "crypto", assets }) => {
     if (assetsFormatted !== a) setAssetsFormatted(a)
   }, [assets, category, tableStatsMaker])
 
-  useEffect(() => {
-    const theseAssets = assetsForCategory(assets, institutions, category)
-    const dA = portfolioDonutStatsMaker(
-      theseAssets,
-      rateFor,
-      numberOfTopAssets,
-      institutions,
-    )
-    // console.log(dA.locationSeries)
-    setDonutAssets(dA)
-  }, [assets])
+  // useEffect(() => {
+  //   const theseAssets = assetsForCategory(assets, institutions, category)
+  //   const dA = portfolioDonutStatsMaker(
+  //     theseAssets,
+  //     rateFor,
+  //     numberOfTopAssets,
+  //     institutions,
+  //   )
+  //   // console.log(dA.locationSeries)
+  //   setDonutAssets(dA)
+  // }, [assets])
 
   // if (loading) return <Loading fullPage />
 
@@ -138,7 +141,8 @@ export const AssetCategory = ({ category = "crypto", assets }) => {
       <ReactTooltip id={"new-institution"}>
         {newInstitutionLanguage(category)}
       </ReactTooltip>
-      <div className="flex w-full flex-col md:flex-row">
+      {/* TODO: fix  */}
+      {/* <div className="flex w-full flex-col md:flex-row">
         <div className="w-full md:w-1/2">
           <h3>{`${numberOfTopAssets} Largest Assets`}</h3>
           <LoadedDonut
@@ -156,8 +160,8 @@ export const AssetCategory = ({ category = "crypto", assets }) => {
             labels={donutAssets.locationLabels}
             currency={currency}
         </div>
-          /> */}
-      </div>
+          />
+      </div> */}
     </div>
   )
 }

@@ -235,7 +235,6 @@ const tableStatsMaker = (
   const totalAmount = totalForAssets(assets, true)
   let setUp = assets.map((asset) => {
     const rate = rateFor(asset.currency)
-
     const amount = rate * asset.holdings
     const percentageChange = percentageChangeFor(asset.currency)
     const ranking = rateFor(asset.currency, "market_cap_rank")

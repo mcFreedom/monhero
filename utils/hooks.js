@@ -7,7 +7,7 @@ export function useRate() {
   const { rates, loading, error } = useContext(RateContext)
 
   const rateFor = (toCurrency, property = "rate") => {
-    // console.log({ loading, rates, ok: rates[toCurrency?.toLowerCase()] })
+    // console.log({ rates, ok: rates[toCurrency?.toLowerCase()] })
     if (toCurrency && rates && rates[toCurrency?.toLowerCase()]) {
       return rates[toCurrency.toLowerCase()]?.[property]
     }

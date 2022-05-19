@@ -135,8 +135,8 @@ export const UserbaseProvider = ({ children }) => {
     loadStripeWhenNeeded().then(() => {
       userbase
         .purchaseSubscription({
-          successUrl: `${process.env.NEXT_PUBLIC_BACKEND_URL}/${currentUrl}#success`,
-          cancelUrl: `${process.env.NEXT_PUBLIC_BACKEND_URL}/${currentUrl}#fail`,
+          successUrl: `${process.env.NEXT_PUBLIC_APP_URL}${currentUrl}#success`,
+          cancelUrl: `${process.env.NEXT_PUBLIC_APP_URL}${currentUrl}#fail`,
           priceId: process.env.NEXT_PUBLIC_STRIPE_SUBSCRIPTION_ID,
         })
         .then(() => {

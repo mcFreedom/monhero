@@ -71,8 +71,9 @@ const ChildApp = ({ showModal = false, setShowModal = () => {}, children }) => {
         />
       </Head>
       <Rate>
+
         <Navbar setShowModal={setShowModal} warning={!userValid} />
-        <div className="min-h-screen">
+        <div className="min-h-screen main-background">
           {children}
           <UserModal
             shown={demoMode ? false : showModal}
