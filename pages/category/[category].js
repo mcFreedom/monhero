@@ -85,7 +85,7 @@ const Category = () => {
   const title = `${CATEGORIES[category]} ${institutionLanguage(category)}`
 
   return (
-    <div className="flex-center flex-col min-h-screen mt-10 md:w-1/3 md:mx-auto">
+    <div className="flex-center flex-col min-h-screen mt-10 md:w-1/3 md:mx-auto glassmorphic">
       <Head>
         <title>{title}</title>
       </Head>

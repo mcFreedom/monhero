@@ -144,7 +144,7 @@ export function LogInComponent({ signUpProp = false }) {
             </div>
           ) : (
             <>
-              <div className="flex w-full">
+              <div className="flex w-full glassmorphic">
                 <button
                   className={`btn cursor-pointer ${signUp ? "disabled" : ""}`}
                   onClick={() => setSignUp(true)}
