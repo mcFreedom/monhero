@@ -84,7 +84,7 @@ export const Asset = () => {
           })
 
           const curves = seriesMakerSingle(cleanData, asset)
-          setSeries(curves)
+          if (curves[0]?.data) setSeries(curves)
         })
         .catch((error) => {
           console.error("Error fetching data: ", error)
@@ -136,7 +136,7 @@ export const Asset = () => {
   if (error) return <Error />
 
   return (
-    <div className="flex-center flex-col min-h-screen mt-10 lg:w-2/3 xl:w-1/2 md:mx-auto">
+    <div className="flex-center flex-col py-40 mt-10 lg:w-2/3 xl:w-1/2 md:mx-auto glassmorphic">
       <Head>
         <title>{asset?.name || "Asset"}</title>
       </Head>

@@ -112,7 +112,7 @@ const seriesMaker = (assets = [], days = 10) => {
 
 const getTimeseries = async (from, to, first_date) => {
   return await axios(
-    `${BACKEND_URL}/rate/timeseries?from=${from}&to=${to}&first_date=${first_date}`,
+    `${BACKEND_URL}/rate/timeseries?from=${from.toLowerCase()}&to=${to.toLowerCase()}&first_date=${first_date}`,
   )
   // .then((response) => {
   //   return response.data

@@ -55,7 +55,7 @@ export const AssetPage = ({ categoryProp, liabilities = false }) => {
 
   return (
     <>
-      <div className="overflow-x-auto flex snap-mandatory snap-x bg-gray-400 text-white justify-center w-full top-0 mt-0">
+      <div className="overflow-x-auto flex snap-mandatory snap-x  text-white justify-center w-full top-0 mt-0">
         {assetsFormatted.map((item, i) => {
           if (item.hidden) return <Fragment key={i}></Fragment>
           return (
@@ -64,7 +64,7 @@ export const AssetPage = ({ categoryProp, liabilities = false }) => {
               onClick={() => setCategory(item.name)}
               className={`${
                 category === item.name ? "bg-gray-600" : ""
-              } flex flex-col snap-center p-4 items-end cursor-pointer`}
+              } flex flex-col snap-center p-4 items-end cursor-pointer rounded-b-xl`}
             >
               <div className={`${category === item.name ? "font-bold" : ""}`}>
                 <div className="flex items-center">
@@ -86,13 +86,15 @@ export const AssetPage = ({ categoryProp, liabilities = false }) => {
       </div>
       {assetsFormatted?.length < 1 ? (
         <div className="flex-center flex-col h-full">
-          {`No ${liabilities ? "Liabilities" : "Assets"}`}
-          <Link href="/new-asset" passHref>
-            <button className="btn small nav-bar my-2 md:my-1 h-10 md:h-initial flex-center">
-              <FaPlus className="pr-1" />
-              Add
-            </button>
-          </Link>
+          <div className="glassmorphic p-20 flex-center flex-col">
+            {`No ${liabilities ? "Liabilities" : "Assets"}`}
+            <Link href="/new-asset" passHref>
+              <button className="btn small nav-bar my-2 md:my-1 h-10 md:h-initial flex-center ">
+                <FaPlus className="pr-1" />
+                Add
+              </button>
+            </Link>
+          </div>
         </div>
       ) : (
         <AssetCategory category={category} assets={theseAssets} />

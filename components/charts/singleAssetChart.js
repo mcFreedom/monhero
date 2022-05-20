@@ -7,6 +7,7 @@ const { chartOptions, series: seriesExample } = apexChartTools
 
 const allAssetsChart = ({ currency, series }) => {
   const loadedSeries = series || seriesExample
+  console.log({ loadedSeries })
   return (
     <Chart
       options={chartOptions(currency)}

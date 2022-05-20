@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { Toggle } from "../components"
-import { StoreContext, constants } from "../utils"
+import { StoreContext, constants, UserbaseContext } from "../utils"
 import Link from "next/link"
 import Image from "next/image"
 const { CATEGORIES } = constants
@@ -14,6 +14,8 @@ export default function Settings() {
     // resetState,
     dbAction,
   } = useContext(StoreContext)
+
+  const { cancelStripe, userHasPaid } = useContext(UserbaseContext)
 
   const toggleCategory = (item, id) => {
     let category = { ...item }
@@ -78,6 +80,24 @@ export default function Settings() {
           </div>
         </div>
         <hr />
+        {userHasPaid() ? (
+          <>
+            <div className="flex-col flex-center p-4">
+              <h5 className="text-xl font-bold p-4">Subscription</h5>
+
+              <button
+                className="btn danger cursor-pointer"
+                onClick={() => cancelStripe()}
+              >
+                Cancel Your Stripe Subscription
+              </button>
+            </div>
+            {/* TODO: resumeStripe once cancelled . Compare dates etc. https://userbase.com/docs/sdk/resume-subscription/ */}
+            <hr />
+          </>
+        ) : (
+          <></>
+        )}
         <div className="flex-col flex-center p-4">
           <h5 className="text-xl font-bold p-4">Inheritance Planning</h5>
           <div className="card cursor-not-allowed">

@@ -115,7 +115,7 @@ const Institution = () => {
   if (!institution) return <Error />
 
   return (
-    <div className="flex-center flex-col min-h-screen mt-10 md:w-1/3 md:mx-auto">
+    <div className="flex-center flex-col py-40 mt-10 md:w-1/3 md:mx-auto glassmorphic">
       <Head>
         <title>{institution?.name || "Institution"}</title>
       </Head>

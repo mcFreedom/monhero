@@ -157,7 +157,7 @@ export const Footer = () => {
       <div className="w-full md:w-1/4 text-center pb-2">
         <div className="text-xs">
           <div>{`Copyright ${new Date().getFullYear()}`}</div>
-          <span className="font-bold pr-1">NOT</span>powered by the FED
+          <span className="font-bold pr-1">NOT</span>powered by the FED nor the SEC
         </div>
       </div>
     </footer>

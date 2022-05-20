@@ -129,6 +129,7 @@ export const UserbaseProvider = ({ children }) => {
     return
   }
   const userHasPaid = () => {
+    // console.log({ toBeCancelled: user.cancelSubscriptionAt })
     return user.subscriptionStatus === "active"
   }
   const goToStripeCheckout = (currentUrl) => {
@@ -145,6 +146,23 @@ export const UserbaseProvider = ({ children }) => {
         .catch((e) => console.error(e))
     })
   }
+  const cancelStripe = () => {
+    userbase
+      .cancelSubscription()
+      .then((result) => {
+        console.log({ result })
+      })
+      .catch((e) => console.error(e))
+  }
+
+  const resumeStripe = () => {
+    userbase
+      .resumeSubscription()
+      .then(() => {
+        // user sucessfully resumed subscription
+      })
+      .catch((e) => console.error(e))
+  }
 
   const context = {
     user,
@@ -154,6 +172,8 @@ export const UserbaseProvider = ({ children }) => {
     error,
     userHasPaid,
     goToStripeCheckout,
+    cancelStripe,
+    resumeStripe,
   }
 
   return (

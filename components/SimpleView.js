@@ -29,7 +29,7 @@ export const SimpleView = ({ category }) => {
   if (loading) return <Loading fullPage />
 
   return (
-    <div className="glassmorphic mt-10 md:px-10">
+    <div className="mt-10 md:px-10">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {relevantInstitutions?.map((institution) => {
           const theseAssets = assetsForInstitution(assets, institution).map(
@@ -38,7 +38,7 @@ export const SimpleView = ({ category }) => {
           return (
             <div
               key={institution.name}
-              className="border w-full flex items-center flex-col rounded"
+              className="border w-full flex items-center flex-col rounded-xl"
               style={institutionStyle(institution)}
             >
               <h3 className="font-bold text-2xl mt-5">{institution.name}</h3>

@@ -87,7 +87,7 @@ export function LogInComponent({ signUpProp = false }) {
   }
 
   return (
-    <div className="flex-center mt-10">
+    <div className="flex-center mt-10 px-30">
       <Head>
         <title>
           {signUp ? "Sign Up - Secret Assets" : "Log In - Secret Assets"}
@@ -144,7 +144,7 @@ export function LogInComponent({ signUpProp = false }) {
             </div>
           ) : (
             <>
-              <div className="flex w-full glassmorphic">
+              <div className="flex w-full ">
                 <button
                   className={`btn cursor-pointer ${signUp ? "disabled" : ""}`}
                   onClick={() => setSignUp(true)}

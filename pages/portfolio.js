@@ -55,67 +55,69 @@ export default function Portfolio() {
   if (!categories) return <Loading />
 
   return (
-    <div className="min-h-screen flex flex-col items-center">
-      <Head>
-        <title>Portfolio</title>
-      </Head>
-      <main className="p-0 mb-32 md:mb-8 flex-center flex-col w-full relative">
-        <div className="flex flex-col items-center w-full mt-10 mb-20 px-2 md:px-10">
-          <div
-            className="w-full mt-10 text-center hidden md:visible"
-            style={{ minHeight: "315px" }}
-          >
-            <h1>Portfolio</h1>
-            <LoadableComponent currency={currency || "USD"} />
-          </div>
-          <div className="w-full flex flex-col xl:flex-row md:justify-between">
-            <div className="w-full lg:w-1/2 md:pr-5">
-              <h3 className="mt-10 mb-5">Assets</h3>
-              <TableManager
-                assets={categoryAttributesPositives}
-                passedFunction={toggleActiveCategory}
-                category="portfolio"
-              />
-
-              <div className="w-2/3 mx-auto rounded-xl">
-                <LoadedDonut
-                  series={categoryAttributesPositives
-                    .filter((category) => category?.amount > 0)
-                    .map((category) => category?.amount)}
-                  labels={categoryAttributesPositives
-                    .filter((category) => category?.amount > 0)
-                    .map((category) => CATEGORIES[category?.name])}
-                  currency={currency}
+    <>
+      <div className="flex flex-col items-center glassmorphic mt-10">
+        <Head>
+          <title>Portfolio</title>
+        </Head>
+        <main className="p-0 md:mb-8 flex-center flex-col w-full relative">
+          <div className="flex flex-col items-center w-full mt-10 mb-20 px-2 md:px-10">
+            <div
+              className="w-full mt-10 text-center hidden md:visible"
+              style={{ minHeight: "315px" }}
+            >
+              <h1>Portfolio</h1>
+              <LoadableComponent currency={currency || "USD"} />
+            </div>
+            <div className="w-full flex flex-col xl:flex-row md:justify-between">
+              <div className="w-full lg:w-1/2 md:pr-5">
+                <h3 className="mt-10 mb-5">Assets</h3>
+                <TableManager
+                  assets={categoryAttributesPositives}
+                  passedFunction={toggleActiveCategory}
+                  category="portfolio"
                 />
+
+                <div className="w-2/3 mx-auto rounded-xl">
+                  <LoadedDonut
+                    series={categoryAttributesPositives
+                      .filter((category) => category?.amount > 0)
+                      .map((category) => category?.amount)}
+                    labels={categoryAttributesPositives
+                      .filter((category) => category?.amount > 0)
+                      .map((category) => CATEGORIES[category?.name])}
+                    currency={currency}
+                  />
+                </div>
+              </div>
+              <div className="w-full md:w-1/2 md:pl-5">
+                <h3 className="mt-10 mb-5">Liabilities</h3>
+                <TableManager
+                  assets={categoryAttributesLiability}
+                  passedFunction={toggleActiveCategory}
+                  type="portfolio"
+                />
+
+                <div className="w-2/3 mx-auto rounded-xl">
+                  <LoadedDonut
+                    series={categoryAttributesLiability
+                      .filter((category) => category.amount > 0)
+                      .map((category) => category.amount)}
+                    labels={categoryAttributesLiability
+                      .filter((category) => category.amount > 0)
+                      .map((category) => CATEGORIES[category.name])}
+                    currency={currency}
+                  />
+                </div>
               </div>
             </div>
-            <div className="w-full md:w-1/2 md:pl-5">
-              <h3 className="mt-10 mb-5">Liabilities</h3>
-              <TableManager
-                assets={categoryAttributesLiability}
-                passedFunction={toggleActiveCategory}
-                type="portfolio"
-              />
-
-              <div className="w-2/3 mx-auto rounded-xl">
-                <LoadedDonut
-                  series={categoryAttributesLiability
-                    .filter((category) => category.amount > 0)
-                    .map((category) => category.amount)}
-                  labels={categoryAttributesLiability
-                    .filter((category) => category.amount > 0)
-                    .map((category) => CATEGORIES[category.name])}
-                  currency={currency}
-                />
-              </div>
-            </div>
           </div>
-        </div>
-        <div className="flex w-full mb-20"></div>
-      </main>
+          <div className="flex w-full mb-20"></div>
+        </main>
+      </div>
       <div className="hidden md:block">
         <Footer />
       </div>
-    </div>
+    </>
   )
 }
