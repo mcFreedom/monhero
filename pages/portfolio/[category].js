@@ -90,7 +90,6 @@ const PortfolioCategory = () => {
       </Link>
       <Head>
         <title>{CATEGORIES[category] || "Portfolio"}</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="flex items-center">
         <h1 className="text-center">

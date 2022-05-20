@@ -36,7 +36,7 @@ export const RateProvider = ({ children, currency = "usd", to = [] }) => {
     if (toCurrencies !== "") {
       await axios(`${BACKEND_URL}/rate?from=${currency}&to=${toCurrencies}`)
         .then((response) => {
-          console.log({ response })
+          // console.log({ response })
           if (response.data) {
             const data = response.data || {}
             data["lastUpdated"] = new Date()

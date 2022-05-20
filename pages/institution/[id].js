@@ -118,7 +118,6 @@ const Institution = () => {
     <div className="flex-center flex-col min-h-screen mt-10 md:w-1/3 md:mx-auto">
       <Head>
         <title>{institution?.name || "Institution"}</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="row flex  mr-auto ml-2">
         <div

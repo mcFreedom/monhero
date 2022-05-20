@@ -1,5 +1,5 @@
 import { useState, useEffect, Fragment, useContext } from "react"
-import { AssetCategory } from "./"
+import { AssetCategory, IconForCategory } from "./"
 import {
   useVisibility,
   StoreContext,
@@ -54,8 +54,8 @@ export const AssetPage = ({ categoryProp, liabilities = false }) => {
   }, [theseAssets, categories])
 
   return (
-    <>
-      <div className="overflow-x-auto flex snap-mandatory snap-x bg-gray-400 text-white justify-center w-full top-0 mt-0">
+    <div className="">
+      <div className="overflow-x-auto flex snap-mandatory snap-x bg-gray-400 text-white justify-center w-full top-0 mt-0 ">
         {assetsFormatted.map((item, i) => {
           if (item.hidden) return <Fragment key={i}></Fragment>
           return (
@@ -67,7 +67,13 @@ export const AssetPage = ({ categoryProp, liabilities = false }) => {
               } flex flex-col snap-center p-4 items-end cursor-pointer`}
             >
               <div className={`${category === item.name ? "font-bold" : ""}`}>
-                {CATEGORIES[item.name]}
+                <div className="flex items-center">
+                  <IconForCategory
+                    category={item.name}
+                    className="text-xs mr-1"
+                  />
+                  {CATEGORIES[item.name]}
+                </div>
               </div>
               <div className="text-sm">
                 {!totalDisplayed
@@ -79,7 +85,7 @@ export const AssetPage = ({ categoryProp, liabilities = false }) => {
         })}
       </div>
       {assetsFormatted?.length < 1 ? (
-        <div className="flex-center flex-col h-full">
+        <div className="flex-center flex-col h-full glassmorphic">
           {`No ${liabilities ? "Liabilities" : "Assets"}`}
           <Link href="/new-asset" passHref>
             <button className="btn small nav-bar my-2 md:my-1 h-10 md:h-initial flex-center">
@@ -91,6 +97,6 @@ export const AssetPage = ({ categoryProp, liabilities = false }) => {
       ) : (
         <AssetCategory category={category} assets={theseAssets} />
       )}
-    </>
+    </div>
   )
 }

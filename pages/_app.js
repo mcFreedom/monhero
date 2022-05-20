@@ -11,6 +11,7 @@ import { assetMethods } from "../utils"
 import { Navbar, HelpButton } from "../components"
 import { WelcomeModal } from "../components/portal"
 import { UserModal } from "../components/portal/UserModal"
+import Image from "next/image"
 
 const { getAssetCurrencies } = assetMethods
 import Head from "next/head"
@@ -64,16 +65,25 @@ const ChildApp = ({ showModal = false, setShowModal = () => {}, children }) => {
   ) : (
     <>
       <Head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="/favicon.svg" />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
         />
       </Head>
       <Rate>
-
         <Navbar setShowModal={setShowModal} warning={!userValid} />
-        <div className="min-h-screen main-background">
+        <div className="main-background">
+          <Image
+            src="/yacht.jpg"
+            alt="Yacht"
+            layout="fill"
+            // placeholder="blur"
+            // blurDataURL={blurDataYacht}
+            objectFit="cover"
+            quality={100}
+            className="-z-10 fixed bottom-0 top-0"
+          />
           {children}
           <UserModal
             shown={demoMode ? false : showModal}

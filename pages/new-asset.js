@@ -26,7 +26,7 @@ const NewAsset = () => {
             const categoryName = cat.item.name
             return (
               <Link key={index} href={`/category/${categoryName}`} passHref>
-                <card className="w-2/5 bg-blue-100 m-4 p-10 link flex items-center">
+                <card className="w-2/5 bg-blue-100 m-4 p-10 link flex items-center rounded-lg">
                   <IconForCategory
                     category={categoryName}
                     className="mr-2 text-gray-800 text-lg"

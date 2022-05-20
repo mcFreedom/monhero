@@ -86,10 +86,9 @@ export const AssetCategory = ({ category = "crypto", assets }) => {
   // if (loading) return <Loading fullPage />
 
   return (
-    <div className="flex-center flex-col min-h-screen pt-20 md:mx-auto md:px-10">
+    <div className="flex-center flex-col  pt-20 md:mx-auto md:px-10 glassmorphic mt-10">
       <Head>
         <title>{CATEGORIES[category] || "Portfolio"}</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="flex items-center">
         <h1 className="text-center">{`${CATEGORIES[category]}`}</h1>

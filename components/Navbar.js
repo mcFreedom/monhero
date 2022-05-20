@@ -10,6 +10,7 @@ import { StoreContext } from "../utils"
 import { CurrencyPicker, WarningBar } from "../components"
 import { RateContext } from "../utils"
 import moment from "moment"
+import Image from "next/image"
 
 export const Navbar = ({
   styleOnly = false,
@@ -44,7 +45,8 @@ export const Navbar = ({
                 "text-2xl px-2 font-extrabold cursor-pointer relative flex items-center"
               }
             >
-              Secret Assets
+              <Image src="/logo.png" height={47} width={100} />
+
               <div className="bg-red-500 text-white text-xs p-1 rounded rotate-12 mt-1 ml-1">
                 beta
               </div>
@@ -65,7 +67,8 @@ export const Navbar = ({
                 "text-2xl px-2 font-extrabold cursor-pointer relative flex items-center"
               }
             >
-              Secret Assets
+              <Image src="/logo.png" height={47} width={100} />
+
               <div className="bg-red-500 text-white text-xs p-1 rounded rotate-12 mt-1 ml-1">
                 beta
               </div>

@@ -139,7 +139,6 @@ export const Asset = () => {
     <div className="flex-center flex-col min-h-screen mt-10 lg:w-2/3 xl:w-1/2 md:mx-auto">
       <Head>
         <title>{asset?.name || "Asset"}</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <div className="row flex items-center mt-10 mr-auto ml-2" id="bredcrumbs">

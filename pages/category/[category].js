@@ -88,7 +88,6 @@ const Category = () => {
     <div className="flex-center flex-col min-h-screen mt-10 md:w-1/3 md:mx-auto">
       <Head>
         <title>{title}</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>{title}</h1>
       <FaInfo

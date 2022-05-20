@@ -54,7 +54,6 @@ const PortfolioRealEstate = () => {
       </Link>
       <Head>
         <title>{CATEGORIES[category] || "Portfolio"}</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>{`${CATEGORIES[category]} ${institutionLanguage(category)}`}</h1>
       <h3>{total}</h3>
