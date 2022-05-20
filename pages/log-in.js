@@ -87,7 +87,7 @@ export function LogInComponent({ signUpProp = false }) {
   }
 
   return (
-    <div className="flex-center mt-10 px-30">
+    <div className="flex-center mt-20 px-30 ">
       <Head>
         <title>
           {signUp ? "Sign Up - Secret Assets" : "Log In - Secret Assets"}
@@ -103,7 +103,7 @@ export function LogInComponent({ signUpProp = false }) {
           </button>
         </div>
       ) : (
-        <div>
+        <div className="glassmorphic p-20">
           {signUp && !explainerAccepted ? (
             <div className="flex flex-col w-full items-center max-w-500 bg-yellow-400 border-4 border-gray-600 p-5">
               <div className="flex w-full justify-end">
